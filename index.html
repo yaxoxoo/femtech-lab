@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FemTech Lab — The global platform for founders in women’s health</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="apple-touch-icon" href="images/favicon.png">
+  <style>
+/* ==========================================================================
+   FemTech Lab — Client First stylesheet
+   Sizing in REM (1rem = 16px base). Maps 1:1 to Webflow Client First.
+   Fonts: Chalet (всё, кроме акцентов) + Instrument Serif (акцент-курсив).
+   Chalet — не веб-шрифт: загружается в Webflow. В превью идёт fallback.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+
+/* ----- Tokens (Webflow → Variables) ----- */
+:root{
+  --color--plum:#2e1a40;
+  --color--plum-deep:#3a133c;
+  --color--coral:#ff6f53;
+  --color--coral-deep:#ed6b4e;
+  --color--cream:#faf5ef;
+  --color--peach:#f3cdc4;
+  --color--white:#ffffff;
+  --color--grey:#6e6e6e;
+  --color--grey-light:#ebe7eb;
+  --color--placeholder:#c9bcd0;
+
+  --font--display:'Chalet','Helvetica Neue',Arial,sans-serif;  /* подключи Chalet в Webflow */
+  --font--body:'Chalet','Helvetica Neue',Arial,sans-serif;
+  --font--button:'Chalet','Helvetica Neue',Arial,sans-serif;
+  --font--serif:'Instrument Serif',Georgia,serif;
+
+  --container-large:103rem;     /* 1648px — ширина контента как в макете */
+  --padding-global:2.5rem;      /* 40px боковой паддинг */
+  --radius-card:1.5rem;         /* 24px */
+  --radius-img:1rem;            /* 16px */
+  --hairline:0.0625rem;         /* 1px */
+}
+
+/* ----- Base reset ----- */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:100%;-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+html,body{overflow-x:hidden}
+body{font-family:var(--font--body);color:var(--color--plum);background:var(--color--white);line-height:1.5;font-size:1rem}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;color:inherit;cursor:pointer;border:0;background:none}
+ul{list-style:none}
+
+/* ==========================================================================
+   Client First — layout structure
+   ========================================================================== */
+.page-wrapper{position:relative}
+.main-wrapper{display:block}
+
+.padding-global{padding-left:var(--padding-global);padding-right:var(--padding-global)}
+.container-large{width:100%;max-width:var(--container-large);margin-inline:auto}
+
+.padding-section-large{padding-top:7rem;padding-bottom:7rem}
+.padding-section-medium{padding-top:6rem;padding-bottom:6rem}
+.padding-section-small{padding-top:5rem;padding-bottom:5rem}
+
+/* ==========================================================================
+   Typography (heading-style-* / text-size-*)
+   ========================================================================== */
+.heading-style-h1{font-family:var(--font--display);font-weight:500;font-size:6rem;line-height:.9;letter-spacing:-.02em}
+.heading-style-h2{font-family:var(--font--display);font-weight:500;font-size:4rem;line-height:1.08;letter-spacing:-.01em}
+.heading-style-h3{font-family:var(--font--display);font-weight:500;font-size:3.5rem;line-height:.95;letter-spacing:-.01em}
+.heading-style-h4{font-family:var(--font--display);font-weight:500;font-size:2.5rem;line-height:1.05}
+.heading-style-h5{font-family:var(--font--display);font-weight:500;font-size:1.875rem;line-height:1.05}
+.heading-style-h6{font-family:var(--font--display);font-weight:500;font-size:1.5rem;line-height:1.1}
+.heading-style-display{font-family:var(--font--display);font-weight:500;font-size:4.5rem;line-height:1;letter-spacing:-.03em}
+
+.text-size-large{font-size:1.5rem;line-height:1.2}
+.text-size-medium{font-size:1.25rem;line-height:1.4}
+.text-size-regular{font-size:1.125rem;line-height:1.3}
+.text-size-small{font-size:1rem}
+.text-size-tiny{font-size:.875rem}
+.text-size-xtiny{font-size:.75rem}
+
+.text-serif{font-family:var(--font--serif);font-style:italic;font-weight:400}
+.text-display{font-family:var(--font--display);font-weight:500}
+.u-uppercase{text-transform:uppercase}
+.u-capitalize{text-transform:capitalize}
+
+.text-color-white{color:var(--color--white)}
+.text-color-plum{color:var(--color--plum)}
+.text-color-plum-deep{color:var(--color--plum-deep)}
+.text-color-coral{color:var(--color--coral)}
+.text-color-cream{color:var(--color--cream)}
+.text-color-grey{color:var(--color--grey)}
+.text-color-grey-light{color:var(--color--grey-light)}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.button{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 1.75rem;font-family:var(--font--button);font-weight:500;font-size:1rem;line-height:1;background:var(--color--coral);color:var(--color--white);white-space:nowrap;transition:opacity .2s ease}
+.button:hover{opacity:.88}
+.button.is-peach{background:var(--color--peach);color:var(--color--coral)}
+.button.is-plum{background:var(--color--plum);color:var(--color--white)}
+.button.is-coral-deep{background:var(--color--coral-deep);color:var(--color--white)}
+.button-group{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap}
+
+/* ==========================================================================
+   Slider (where the arrows are)
+   ========================================================================== */
+.slider_arrows{display:flex;gap:.625rem;flex:0 0 auto}
+.slider_arrow{width:2.75rem;height:2.75rem;border:var(--hairline) solid var(--color--plum);background:var(--color--white);color:var(--color--plum);display:flex;align-items:center;justify-content:center;font-family:var(--font--body);font-size:1rem;transition:background .2s ease,color .2s ease}
+.slider_arrow:hover{background:var(--color--plum);color:var(--color--white)}
+.slider_arrow:disabled{opacity:.3;cursor:default}
+.slider_arrow.is-light{border-color:var(--color--white);color:var(--color--white);background:transparent}
+.slider_track{display:flex;gap:1.25rem;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;-ms-overflow-style:none}
+.slider_track::-webkit-scrollbar{display:none}
+.slider_track>*{scroll-snap-align:start;flex:0 0 auto}
+
+/* image placeholder helper (для пустых блоков под фото) */
+.img-ph{background:var(--color--placeholder);border-radius:var(--radius-img)}
+
+/* ==========================================================================
+   Navbar
+   ========================================================================== */
+.navbar{position:relative;z-index:5}
+.navbar_top-bar{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.5rem 2.5rem;background:var(--color--plum);color:var(--color--cream)}
+.navbar_top-bar p{font-family:var(--font--display);font-weight:500;font-size:1.5rem;text-transform:capitalize}
+.navbar_register{display:flex;align-items:center;gap:1rem;font-family:var(--font--button);font-weight:500;font-size:1rem;white-space:nowrap;flex:0 0 auto}
+.navbar_main{display:flex;justify-content:center;align-items:center;gap:2rem;padding:1.5rem 1.25rem;background:var(--color--cream);flex-wrap:wrap}
+.navbar_link{font-family:var(--font--display);font-weight:500;font-size:1.5rem;color:var(--color--plum);text-transform:capitalize}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+.section_hero{position:relative;min-height:60.1875rem;display:flex;align-items:flex-end;overflow:hidden;color:var(--color--cream);
+  background:radial-gradient(120% 120% at 75% 30%,#ff8a5c 0%,#7a2b53 45%,#3a133c 80%)}
+.hero_bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hero_overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(46,26,64,.5),rgba(46,26,64,0) 55%)}
+.section_hero .padding-global{position:relative;z-index:2;width:100%}
+.hero_content{display:flex;flex-direction:column;gap:1.5rem;max-width:84.375rem;padding-top:7.5rem;padding-bottom:7.5rem}
+.hero_heading{max-width:84.375rem}
+
+/* ==========================================================================
+   Intro + Stats
+   ========================================================================== */
+.section_intro-stats{background:var(--color--white)}
+.intro_inner{display:flex;flex-direction:column;gap:4rem}
+.intro_heading{max-width:98rem}
+.stats_grid{display:flex;gap:1.5rem;align-items:flex-end}
+.stat-card{flex:1;min-width:0;padding:2rem;border-radius:var(--radius-card);display:flex;flex-direction:column;justify-content:space-between;gap:2rem}
+.stat-card.is-coral{background:var(--color--coral);color:var(--color--plum)}
+.stat-card.is-plum{background:rgba(46,26,64,.5);color:var(--color--white)}
+.stat-card.is-h1{min-height:18rem}
+.stat-card.is-h2{min-height:17.5rem}
+.stat-card.is-h3{min-height:16rem}
+.stat-card.is-h4{min-height:15rem}
+.stat-card_label{font-family:var(--font--display);font-weight:500;font-size:1.5rem;text-transform:capitalize}
+.stat-card_value{font-family:var(--font--display);font-weight:500;font-size:4.5rem;letter-spacing:-.04em}
+
+/* ==========================================================================
+   Founders gallery (slider)
+   ========================================================================== */
+.section_founders-gallery{background:var(--color--white)}
+.gallery_head{display:flex;justify-content:flex-end;margin-bottom:3rem}
+.gallery_item{height:33.75rem;width:22.5rem;border-radius:var(--radius-img);object-fit:cover}
+.gallery_item.is-wide{width:50.625rem}
+
+/* ==========================================================================
+   Benefits ("What's Inside")
+   ========================================================================== */
+.section_benefits{display:flex;align-items:center;gap:5rem;padding-right:2.5rem;background:var(--color--white);min-height:62.5rem;overflow:hidden}
+.benefits_visual{position:relative;width:53.375rem;align-self:stretch;display:flex;align-items:center;justify-content:center;overflow:hidden;
+  background:linear-gradient(180deg,#5a2d6e 0%,#3a133c 100%)}
+.benefits_visual_img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
+.benefits_overlay-title{position:relative;font-family:var(--font--display);font-weight:500;font-size:4rem;line-height:1.1;color:var(--color--grey-light);text-align:center;z-index:1}
+.benefits_list{display:flex;flex-direction:column;gap:3rem;align-items:flex-start;padding-top:7rem;padding-bottom:7rem}
+.benefit-item{display:flex;flex-direction:column;gap:1rem;align-items:flex-start}
+.benefit_dots{display:flex}
+.benefit_dot{width:1.5rem;height:1.5rem;border-radius:50%;border:var(--hairline) solid var(--color--plum-deep);background:var(--color--white);position:relative}
+.benefit_dot:not(:first-child){margin-left:-0.625rem}   /* нахлёст кружков */
+.benefit_dot:nth-child(1){z-index:4}
+.benefit_dot:nth-child(2){z-index:3}
+.benefit_dot:nth-child(3){z-index:2}
+.benefit_dot:nth-child(4){z-index:1}
+.benefit_dot.is-active{background:var(--color--plum);border-color:var(--color--plum)}
+.benefit_title{font-family:var(--font--display);font-weight:500;font-size:2rem;line-height:1;color:var(--color--plum-deep)}
+.benefit_body{font-family:var(--font--display);font-weight:500;font-size:1.5rem;line-height:1.1;color:var(--color--plum);max-width:34rem}
+
+/* ==========================================================================
+   Logo strips (backers / featured)
+   ========================================================================== */
+.section_backers,.section_featured{background:var(--color--white);text-align:center}
+.logos_eyebrow{font-family:var(--font--display);font-weight:500;font-size:1.5rem;line-height:1.2;text-transform:uppercase;color:var(--color--plum-deep);max-width:73.75rem;margin:0 auto 3.5rem}
+/* бегущая строка (marquee) — обе лого-секции одинакового размера */
+.logos-marquee{overflow:hidden;width:100%;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.logos-track{display:flex;width:max-content;animation:marquee 38s linear infinite}
+.logos-track:hover{animation-play-state:paused}
+.logos-group{display:flex;flex:0 0 auto;align-items:center}
+.logo-mark{height:3.5rem;width:9rem;object-fit:contain;flex:0 0 auto;opacity:.85;margin-right:3rem}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.logos-track{animation:none}}
+
+/* ==========================================================================
+   Who it's for
+   ========================================================================== */
+.section_who-its-for{background:var(--color--white)}
+.who_head{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem;margin-bottom:4rem;flex-wrap:wrap}
+.who_heading{max-width:71.5rem}
+.who_grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.who-card{min-height:18rem;padding:2rem;border-radius:var(--radius-card);display:flex;flex-direction:column;justify-content:space-between;gap:2rem}
+.who-card.is-coral{background:var(--color--coral);color:var(--color--plum)}
+.who-card.is-plum{background:var(--color--plum);color:var(--color--white)}
+.who-card_title{font-family:var(--font--display);font-weight:500;font-size:2.5rem;line-height:1;text-transform:capitalize}
+.who-card_body{font-family:var(--font--display);font-weight:500;font-size:1.5rem;line-height:1.05}
+
+/* ==========================================================================
+   Alumni (slider) — карточка повторяемая
+   ========================================================================== */
+.section_alumni{background:var(--color--white)}
+.alumni_head{display:flex;justify-content:space-between;align-items:center;gap:2rem;margin-bottom:3rem;flex-wrap:wrap}
+.alumni_heading{max-width:75.3125rem}
+.founder-card{width:20.625rem;display:flex;flex-direction:column;gap:1rem}
+.founder-card_img{width:100%;height:18.75rem;border-radius:var(--radius-img);background-size:cover;background-position:center;background-repeat:no-repeat}
+.founder-card_tag{align-self:flex-start;padding:.25rem .5rem;border:var(--hairline) solid var(--color--plum);font-family:var(--font--display);font-weight:500;font-size:.75rem;text-transform:uppercase}
+.founder-card_meta{display:flex;flex-direction:column;gap:.5rem}
+.founder-card_name{font-family:var(--font--display);font-weight:500;font-size:1.5rem;line-height:1.1}
+.founder-card_company{font-family:var(--font--display);font-weight:500;font-size:1.125rem;color:var(--color--grey)}
+.founder-card_desc{font-family:var(--font--body);font-size:1.125rem;line-height:1.3;color:var(--color--coral);padding-top:.5rem}
+
+/* ==========================================================================
+   Photo (two images)
+   ========================================================================== */
+.section_photo{display:flex;background:var(--color--white)}
+.photo_img{flex:1;width:50%;height:62.5rem;object-fit:cover}
+
+/* ==========================================================================
+   Testimonials (slider)
+   ========================================================================== */
+.section_testimonials{background:var(--color--white)}
+.section_testimonials .slider_track{align-items:flex-start}
+.testi_head{display:flex;justify-content:space-between;align-items:center;gap:2rem;margin-bottom:3rem;flex-wrap:wrap}
+.testi_heading{max-width:75.3125rem}
+.testi-card{width:24.8125rem;height:30rem;padding:3rem 2.5rem;border-radius:var(--radius-card);background:rgba(250,245,239,.55);display:flex;flex-direction:column;justify-content:space-between;gap:1.5rem;position:relative;overflow:hidden}
+.testi-card::after{content:"";position:absolute;width:30rem;height:30rem;left:-12rem;bottom:-18rem;background:radial-gradient(closest-side,rgba(255,111,83,.45),rgba(255,255,255,0));filter:blur(2.5rem);pointer-events:none}
+.testi-card.is-plum-glow::after{background:radial-gradient(closest-side,rgba(58,19,60,.4),rgba(255,255,255,0))}
+.testi-card_quote{font-family:var(--font--display);font-weight:500;font-size:1.25rem;line-height:1.35;color:var(--color--plum);position:relative;z-index:1;display:-webkit-box;-webkit-line-clamp:10;-webkit-box-orient:vertical;overflow:hidden}
+.testi-card_author{display:flex;gap:1.5rem;align-items:flex-start;position:relative;z-index:1}
+.testi-card_avatar{width:2.5rem;height:2.5rem;border-radius:50%;background:#d9d1d6;background-size:cover;background-position:center;flex:0 0 auto}
+.testi-card_name{font-family:var(--font--display);font-weight:500;font-size:1rem;line-height:1.1}
+.testi-card_role{font-family:var(--font--display);font-weight:500;font-size:1rem;line-height:1.1;opacity:.5}
+
+/* ==========================================================================
+   How to join
+   ========================================================================== */
+.section_how-to-join{background:var(--color--white)}
+.join_head{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem;margin-bottom:3rem;flex-wrap:wrap}
+.join_heading{display:flex;flex-direction:column;gap:1rem;max-width:44rem}
+.join_sub{font-family:var(--font--display);font-weight:500;font-size:1.125rem;line-height:1.2;max-width:28.5rem}
+.steps{display:flex;justify-content:space-between;gap:2rem;align-items:flex-start}
+.step{flex:1;display:flex;flex-direction:column;gap:1.5rem}
+.step_num{align-self:flex-start;padding:1rem 2rem;border-radius:var(--radius-img);background:var(--color--plum);color:var(--color--white);font-family:var(--font--display);font-weight:500;font-size:4.5rem;line-height:1}
+.step_num.is-coral{background:var(--color--coral)}
+.step_text{font-family:var(--font--display);font-weight:500;font-size:1.875rem;line-height:1.07;color:var(--color--plum)}
+
+/* ==========================================================================
+   FAQ
+   ========================================================================== */
+.section_faq{background:var(--color--white)}
+.faq_heading{margin-bottom:3rem}
+.faq_grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;align-items:start}
+.faq-item{background:rgba(255,111,83,.1)}
+.faq-item_head{width:100%;min-height:7.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.5rem;text-align:left;cursor:pointer;background:none}
+.faq-item_q{font-family:var(--font--display);font-weight:500;font-size:1.5rem;color:#2e1a40}
+.faq-item_icon{font-family:var(--font--display);font-weight:300;font-size:1.875rem;line-height:1;color:#2e1a40;flex:0 0 auto}
+.faq-item_answer{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease}
+.faq-item.is-open .faq-item_answer{grid-template-rows:1fr}
+.faq-item_answer-inner{overflow:hidden}
+.faq-item_answer p{padding:0 1.5rem 1.5rem;font-family:var(--font--body);font-size:1.125rem;line-height:1.45;color:var(--color--plum)}
+
+/* ==========================================================================
+   Investors (Syndicate)
+   ========================================================================== */
+.section_investors{color:var(--color--white);text-align:center;background:linear-gradient(142deg,#2e1a40 7%,#ed6b4e 79%)}
+.inv_inner{display:flex;flex-direction:column;align-items:center;gap:3rem}
+.inv_head{display:flex;flex-direction:column;align-items:center;gap:1.5rem}
+.inv_eyebrow{font-family:var(--font--display);font-weight:500;font-size:1.5rem;line-height:1;text-transform:uppercase;letter-spacing:-.01em}
+.inv_headline{font-size:2.5rem;line-height:1.05;max-width:88rem}
+.inv_stats{display:flex;gap:1.25rem;width:100%;justify-content:center}
+.inv-stat{flex:1;max-width:47.375rem;padding:2.5rem;border-radius:var(--radius-card);background:rgba(255,255,255,.1);display:flex;flex-direction:column;gap:1rem;text-align:left}
+.inv-stat_label{font-family:var(--font--display);font-weight:500;font-size:2rem;line-height:1}
+.inv-stat_value{font-family:var(--font--serif);font-style:italic;font-size:4.5rem;line-height:1}
+.inv-stat_source{font-family:var(--font--display);font-weight:500;font-size:.875rem;line-height:1;text-transform:uppercase;text-decoration:underline}
+
+/* ==========================================================================
+   Corporate innovators
+   ========================================================================== */
+.section_corporate{position:relative;background:var(--color--white);text-align:center;display:flex;flex-direction:column;align-items:center;gap:3rem}
+.corp_head{display:flex;flex-direction:column;align-items:center;gap:1.5rem}
+.corp_eyebrow{font-family:var(--font--display);font-weight:500;font-size:1.5rem;line-height:1;text-transform:uppercase}
+.corp_heading{max-width:70.5rem}
+.corp_card{position:absolute;left:50%;bottom:0;transform:translateX(-50%);max-width:37.875rem;width:100%;padding:2rem;border-radius:var(--radius-card) var(--radius-card) 0 0;background:linear-gradient(279deg,#2e1a40,#ff6f53);color:var(--color--white);display:flex;flex-direction:column;align-items:center;gap:1.5rem}
+.corp_quote{font-family:var(--font--display);font-weight:500;font-size:1.25rem;line-height:1.2;text-align:center;max-width:34.5rem}
+.corp_author{display:flex;align-items:center;gap:1.5rem}
+.corp_avatar{width:6.5rem;height:6.5rem;border-radius:50%;background:#d9d1d6;object-fit:cover;flex:0 0 auto}
+.corp_author-meta{display:flex;flex-direction:column;gap:.5rem;text-align:left}
+.corp_name{font-family:var(--font--display);font-weight:500;font-size:1rem;line-height:1.1}
+.corp_role{font-family:var(--font--display);font-weight:500;font-size:1rem;line-height:1.1;opacity:.5}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.footer{background:var(--color--plum);color:var(--color--white)}
+.footer_top{display:flex;justify-content:space-between;align-items:stretch;gap:2rem;padding-bottom:1.5rem;border-bottom:var(--hairline) solid rgba(255,111,83,.2)}
+.footer_cta{display:flex;flex-direction:column;gap:2rem;max-width:46rem}
+.footer_heading{font-family:var(--font--serif);font-style:italic;font-weight:400;font-size:4rem;line-height:1.12}
+.footer_right{display:flex;flex-direction:column;justify-content:space-between;align-items:stretch;gap:2rem}
+.footer_logo{width:16rem;height:11.625rem;object-fit:contain}
+.footer_socials{display:flex;gap:1.25rem;align-items:center}
+.footer_social{width:1.5rem;height:1.5rem;color:var(--color--white);display:inline-flex;opacity:.85;transition:opacity .2s ease}
+.footer_social:hover{opacity:1}
+.footer_social svg{width:100%;height:100%;display:block;fill:currentColor}
+.footer_copyright{font-family:var(--font--body);font-size:.75rem;padding-top:1.75rem}
+
+/* ==========================================================================
+   Newsletter banner (угловой поповер, появляется каждый рефреш)
+   ========================================================================== */
+.nl-banner{position:fixed;right:1.5rem;bottom:1.5rem;z-index:60;width:22.5rem;max-width:calc(100vw - 3rem);padding:1.75rem;border-radius:var(--radius-card);
+  background:linear-gradient(155deg,#2e1a40 0%,#3a133c 60%,#ed6b4e 140%);color:var(--color--white);
+  box-shadow:0 1.25rem 3rem rgba(46,26,64,.35);
+  display:flex;flex-direction:column;gap:1rem;
+  transform:translateX(140%);opacity:0;visibility:hidden;transition:transform .45s cubic-bezier(.2,.7,.3,1),opacity .45s ease,visibility .45s}
+.nl-banner.is-visible{transform:translateX(0);opacity:1;visibility:visible}
+.nl-banner_close{position:absolute;top:.75rem;right:.875rem;width:1.75rem;height:1.75rem;display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;line-height:1;color:var(--color--white);opacity:.7}
+.nl-banner_close:hover{opacity:1}
+.nl-banner_emoji{font-size:2rem;line-height:1}
+.nl-banner_text{font-family:var(--font--display);font-weight:500;font-size:1.0625rem;line-height:1.3}
+.nl-banner_form{display:flex;flex-direction:column;gap:.625rem;margin-top:.25rem}
+.nl-banner_input{width:100%;padding:.75rem 1rem;border:var(--hairline) solid rgba(255,255,255,.4);border-radius:.5rem;
+  background:rgba(255,255,255,.1);color:var(--color--white);font-family:var(--font--body);font-size:1rem}
+.nl-banner_input::placeholder{color:rgba(255,255,255,.6)}
+.nl-banner_input:focus{outline:none;border-color:var(--color--peach)}
+.nl-banner_btn{padding:.75rem 1rem;border-radius:.5rem;background:var(--color--peach);color:var(--color--coral);
+  font-family:var(--font--button);font-weight:500;font-size:1rem;transition:opacity .2s ease}
+.nl-banner_btn:hover{opacity:.9}
+.nl-banner_hp{position:absolute;left:-5000px}
+
+/* ==========================================================================
+   Responsive — Client First breakpoints (rem масштабируется через root font-size)
+   ========================================================================== */
+@media screen and (max-width:991px){
+  html{font-size:93.75%}            /* 15px */
+  .section_hero{min-height:46rem}
+  .benefits_visual{width:42rem}
+}
+@media screen and (max-width:767px){
+  html{font-size:87.5%}             /* 14px */
+  .logos-track{animation-duration:62s}   /* медленнее на мобайле */
+  .padding-section-large{padding-top:5rem;padding-bottom:5rem}
+  .section_benefits{flex-direction:column;gap:0;min-height:0;padding-right:0}
+  .benefits_visual{width:100%;min-height:26rem}
+  .benefits_list{padding:4rem 2.5rem;align-items:flex-start}
+  .who_grid{grid-template-columns:1fr}
+  .faq_grid{grid-template-columns:1fr}
+  .inv_stats{flex-direction:column;align-items:stretch}
+  .inv-stat{max-width:none}
+  .steps{flex-direction:column}
+  .section_photo{flex-direction:column}
+  .photo_img{width:100%;height:28rem}
+  .footer_top{flex-direction:column}
+  .footer_right{align-items:flex-start}
+  .section_hero{min-height:38rem}
+}
+@media screen and (max-width:479px){
+  html{font-size:84%}               /* ~13.4px */
+  :root{--padding-global:1.25rem}
+  .heading-style-h1{font-size:4.25rem}
+  .navbar_top-bar{flex-direction:column;align-items:flex-start;gap:.75rem}
+  .navbar_main{gap:1.25rem}
+  .stats_grid{flex-direction:column;align-items:stretch}
+  .stat-card{min-height:11rem;width:100%}
+  .button{width:100%;justify-content:center}
+  .button-group{flex-direction:column;align-items:stretch;width:100%}
+  .hero_content{padding-bottom:3.5rem}
+  .who_head,.join_head,.alumni_head,.testi_head{flex-direction:column;align-items:flex-start}
+  .logo-mark{width:7rem;height:3rem;margin-right:2rem}
+  .logos-track{animation-duration:70s}
+  /* баннер — нижний лист во всю ширину */
+  .nl-banner{right:.75rem;left:.75rem;bottom:.75rem;width:auto;max-width:none;transform:translateY(140%)}
+  .nl-banner.is-visible{transform:translateY(0)}
+}
+
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+
+    <header class="navbar">
+      <div class="navbar_top-bar">
+        <!-- ДИНАМИЧЕСКИЙ АНОНС: меняй текст <p> ниже и ссылку Register (сейчас Luma) -->
+        <p>Join upcoming Meet The Investor sessions with VCs and angel groups</p>
+        <a href="https://luma.com/c20g1l0a" class="navbar_register" target="_blank" rel="noopener">Register <span aria-hidden="true">&rarr;</span></a>
+      </div>
+      <nav class="navbar_main">
+        <a href="#founders" class="navbar_link">Founders</a>
+        <a href="#investors" class="navbar_link">Investors</a>
+        <a href="#partners" class="navbar_link">Partners</a>
+        <a href="https://luma.com/user/femtechlab" class="navbar_link" target="_blank" rel="noopener">Events</a>
+      </nav>
+    </header>
+
+    <main class="main-wrapper">
+
+      <section class="section_hero">
+        <img class="hero_bg" src="images/hero.jpg" alt="">
+        <div class="hero_overlay"></div>
+        <div class="padding-global">
+          <div class="container-large">
+            <div class="hero_content">
+              <h1 class="heading-style-h1 hero_heading text-color-cream">The global platform for founders in women's health &amp; wellness.</h1>
+              <div class="button-group">
+                <a href="#how-to-join" class="button is-peach">Apply to join</a>
+                <a href="#investors" class="button is-plum">Invest with us</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section_intro-stats">
+        <div class="padding-global">
+          <div class="container-large">
+            <div class="padding-section-large" style="padding-top:10rem;padding-bottom:7rem">
+              <div class="intro_inner">
+                <h2 class="heading-style-h3 intro_heading text-color-plum-deep">Since launching in 2020, FemTech Lab's mission is to support entrepreneurs building the future of women's health.</h2>
+                <div class="stats_grid">
+                  <div class="stat-card is-coral is-h1">
+                    <p class="stat-card_label">community</p>
+                    <p class="stat-card_value">20K+</p>
+                  </div>
+                  <div class="stat-card is-plum is-h2">
+                    <p class="stat-card_label">investors</p>
+                    <p class="stat-card_value">300+</p>
+                  </div>
+                  <div class="stat-card is-coral is-h3">
+                    <p class="stat-card_label">industry partners</p>
+                    <p class="stat-card_value">100+</p>
+                  </div>
+                  <div class="stat-card is-plum is-h4">
+                    <p class="stat-card_label">founders supported</p>
+                    <p class="stat-card_value">80+</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section_founders-gallery" id="founders">
+        <div class="padding-global">
+          <div class="container-large">
+            <div class="padding-section-large" style="padding-top:0">
+              <div class="gallery_head">
+                <div class="slider_arrows" data-slider>
+                  <button class="slider_arrow" data-dir="prev" aria-label="Previous">&larr;</button>
+                  <button class="slider_arrow" data-dir="next" aria-label="Next">&rarr;</button>
+                </div>
+              </div>
+              <div class="slider_track" data-track>
+                <img class="gallery_item" src="images/galer/DSC00444.jpg" alt="">
+                <img class="gallery_item" src="images/galer/DSC00221.jpg" alt="">
+                <img class="gallery_item is-wide" src="images/galer/1-3-scaled.jpg" alt="">
+                <img class="gallery_item" src="images/galer/191.jpg" alt="">
+                <img class="gallery_item" src="images/galer/129.jpg" alt="">
+                <img class="gallery_item" src="images/galer/19.jpg" alt="">
+                <img class="gallery_item" src="images/galer/1-20-scaled.jpg" alt="">
+                <img class="gallery_item is-wide" src="images/galer/1%20%28174%29%20%281%29.jpg" alt="">
+                <img class="gallery_item is-wide" src="images/galer/1%20%28142%29.jpg" alt="">
+                <img class="gallery_item" src="images/galer/1%20%2857%29.jpg" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section_benefits">
+        <div class="benefits_visual">
+          <img class="benefits_visual_img" src="images/benefits-visual.jpg" alt="">
+          <p class="benefits_overlay-title">What's Inside:</p>
+        </div>
+        <div class="benefits_list">
+          <div class="benefit-item">
+            <div class="benefit_dots"><span class="benefit_dot is-active"></span><span class="benefit_dot"></span><span class="benefit_dot"></span><span class="benefit_dot"></span></div>
+            <h3 class="benefit_title">Build alongside founders like you.</h3>
+            <p class="benefit_body">A peer community of founders, resources, practical sprints on Fundraising, Product, Regulatory, AI, Hiring and more.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit_dots"><span class="benefit_dot"></span><span class="benefit_dot is-active"></span><span class="benefit_dot"></span><span class="benefit_dot"></span></div>
+            <h3 class="benefit_title">Get in front of the right investors.</h3>
+            <p class="benefit_body">Regular meetings with VCs and angels actively backing women's health.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit_dots"><span class="benefit_dot"></span><span class="benefit_dot"></span><span class="benefit_dot is-active"></span><span class="benefit_dot"></span></div>
+            <h3 class="benefit_title">Shorten path to GTM partnerships.</h3>
+            <p class="benefit_body">Group sessions and introductions with go-to-market partners already looking at this sector.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit_dots"><span class="benefit_dot"></span><span class="benefit_dot"></span><span class="benefit_dot"></span><span class="benefit_dot is-active"></span></div>
+            <h3 class="benefit_title">Be at the forefront of the industry.</h3>
+            <p class="benefit_body">A global community of 20K+ investors, entrepreneurs, clinicians, scientists, corporate innovators passionate about women's health.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section_backers">
+        <div class="padding-global">
+          <div class="container-large">
+            <div class="padding-section-medium">
+              <p class="logos_eyebrow">Get in front of VCs and angels actively backing women's health</p>
+              <!-- marquee: заполни лого ОДИН раз, копию для зацикливания добавит app.js -->
+              <div class="logos-marquee">
+                <div class="logos-track">
+                  <div class="logos-group">
+                    <img class="logo-mark" src="images/Get%20in%20front%20of%20VCs%20and%20angels%20actively%20backing%20women%27s%20health/NaturalX%201.svg" alt="NaturalX">
+                    <img class="logo-mark" src="images/Get%20in%20front%20of%20VCs%20and%20angels%20actively%20backing%20women%27s%20health/Astia%201.svg" alt="Astia">
+                    <img class="logo-mark" src="images/Get%20in%20front%20of%20VCs%20and%20angels%20actively%20backing%20women%27s%20health/Angel-Academe-2%201.svg" alt="Angel Academe">
+                    <img class="logo-mark" src="images/Get%20in%20front%20of%20VCs%20and%20angels%20actively%20backing%20women%27s%20health/Borski_Fund%201.svg" alt="Borski Fund">
+                    <img class="logo-mark" src="images/Get%20in%20front%20of%20VCs%20and%20angels%20actively%20backing%20women%27s%20health/Calm_Storm%201.svg" alt="Calm Storm">
+                    <img class="logo-mark" src="images/Get%20in%20front%20of%20VCs%20and%20angels%20actively%20backing%20women%27s%20health/Cross_Border_Impact_Ventures%201.svg" alt="Cross Border Impact Ventures">
+                    <img class="logo-mark" src="images/Get%20in%20front%20of%20VCs%20and%20angels%20actively%20backing%20women%27s%20health/Eka%201.svg" alt="Eka">
+                    <img class="logo-mark" src="images/Get%20in%20front%20of%20VCs%20and%20angels%20actively%20backing%20women%27s%20health/Five_Seasons_Ventures%201.svg" alt="Five Seasons Ventures">
+                    <img class="logo-mark" src="images/Get%20in%20front%20of%20VCs%20and%20angels%20actively%20backing%20women%27s%20health/Foreground_Capital%202.svg" alt="Foreground Capital">
+                    <img class="logo-mark" src="images/Get%20in%20front%20of%20VCs%20and%20angels%20actively%20backing%20women%27s%20health/Nina_Capital%201.svg" alt="Nina Capital">
+                    <img class="logo-mark" src="images/Get%20in%20front%20of%20VCs%20and%20angels%20actively%20backing%20women%27s%20health/Thena_Capital%201.svg" alt="Thena Capital">
+                    <img class="logo-mark" src="images/Get%20in%20front%20of%20VCs%20and%20angels%20actively%20backing%20women%27s%20health/Wild_Tree_Ventures%201.svg" alt="Wild Tree Ventures">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section_who-its-for">
+        <div class="padding-global">
+          <div class="container-large">
+            <div class="padding-section-large">
+              <div class="who_head">
+                <h2 class="heading-style-h2 who_heading text-color-plum-deep">FemTech Lab is for the bold innovators changing the status quo:</h2>
+                <a href="#how-to-join" class="button is-coral-deep">Apply to join</a>
+              </div>
+              <div class="who_grid">
+                <div class="who-card is-coral">
+                  <h3 class="who-card_title">Women's Health &amp; FemTech</h3>
+                  <p class="who-card_body">You leverage technology to create and scale innovative solutions for female health &amp; wellness.</p>
+                </div>
+                <div class="who-card is-plum">
+                  <h3 class="who-card_title">Pre-Seed to Series A</h3>
+                  <p class="who-card_body">You are beyond idea stage. There is a product and you are actively fundraising or working on GTM strategy.</p>
+                </div>
+                <div class="who-card is-plum">
+                  <h3 class="who-card_title">Innovative Product</h3>
+                  <p class="who-card_body">Defensible IP, a novel care approach, or innovative route to market — you have the ambition to change the status quo.</p>
+                </div>
+                <div class="who-card is-coral">
+                  <h3 class="who-card_title">Ambition to Scale</h3>
+                  <p class="who-card_body">You are interested in growing globally and making a global impact.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section_alumni">
+        <div class="padding-global">
+          <div class="container-large">
+            <div class="padding-section-large">
+              <div class="alumni_head">
+                <h2 class="heading-style-h2 alumni_heading text-color-plum">80+ alumni globally: 17+ countries. 21 categories of <span class="text-serif">women's health</span></h2>
+                <div class="slider_arrows" data-slider>
+                  <button class="slider_arrow" data-dir="prev" aria-label="Previous">&larr;</button>
+                  <button class="slider_arrow" data-dir="next" aria-label="Next">&rarr;</button>
+                </div>
+              </div>
+              <!-- Карточки рендерит app.js из alumni-data.js; фото REPLACE_ALUMNI_N по порядку -->
+              <div class="slider_track" data-track data-alumni></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section_photo">
+        <img class="photo_img" src="images/photo-1.jpg" alt="">
+        <img class="photo_img" src="images/photo-2.jpg" alt="">
+      </section>
+
+      <section class="section_testimonials">
+        <div class="padding-global">
+          <div class="container-large">
+            <div class="padding-section-large">
+              <div class="testi_head">
+                <h2 class="heading-style-h2 testi_heading text-color-plum">What founders say</h2>
+                <div class="slider_arrows" data-slider>
+                  <button class="slider_arrow" data-dir="prev" aria-label="Previous">&larr;</button>
+                  <button class="slider_arrow" data-dir="next" aria-label="Next">&rarr;</button>
+                </div>
+              </div>
+              <div class="slider_track" data-track data-testi></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section_featured">
+        <div class="padding-global">
+          <div class="container-large">
+            <div class="padding-section-medium" style="padding-top:0">
+              <p class="logos_eyebrow">Featured In</p>
+              <!-- marquee: размер как в секции backers; заполни ОДИН раз, копию добавит app.js -->
+              <div class="logos-marquee">
+                <div class="logos-track">
+                  <div class="logos-group">
+                    <img class="logo-mark" src="images/Featured%20In/femtech-insider.png" alt="Femtech Insider">
+                    <img class="logo-mark" src="images/Featured%20In/in-vivo.svg" alt="In Vivo">
+                    <img class="logo-mark" src="images/Featured%20In/logo-home.webp" alt="Logo Home">
+                    <img class="logo-mark" src="images/Featured%20In/med-tech-innovation.png" alt="Med Tech Innovation">
+                    <img class="logo-mark" src="images/Featured%20In/medcity-news.svg" alt="Medcity News">
+                    <img class="logo-mark" src="images/Featured%20In/the-guardian.svg" alt="The Guardian">
+                    <img class="logo-mark" src="images/Featured%20In/thomson-reuters.svg" alt="Thomson Reuters">
+                    <img class="logo-mark" src="images/Featured%20In/uktn.svg" alt="Uktn">
+                    <img class="logo-mark" src="images/Featured%20In/women-of-wearables.png" alt="Women Of Wearables">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section_how-to-join" id="how-to-join">
+        <div class="padding-global">
+          <div class="container-large">
+            <div class="padding-section-large" style="padding-top:5rem">
+              <div class="join_head">
+                <div class="join_heading">
+                  <h2 class="heading-style-h2 text-color-plum">How to join:</h2>
+                  <p class="join_sub">The next application cycle will open in Autumn 2026. Join the waitlist to get notified.</p>
+                </div>
+                <a href="https://airtable.com/app71llJ5iXE9501w/shrJ2BpuQhMf348Rh" class="button is-coral-deep">Join the Waitlist</a>
+              </div>
+              <div class="steps">
+                <div class="step">
+                  <span class="step_num">1</span>
+                  <p class="step_text"><span class="text-color-coral">Submit the application form</span> (takes 15 mins).</p>
+                </div>
+                <div class="step">
+                  <span class="step_num is-coral">2</span>
+                  <p class="step_text">Our team reviews within 48 hours and invites you to an interview to decide together if FemTech Lab is a fit.</p>
+                </div>
+                <div class="step">
+                  <span class="step_num">3</span>
+                  <p class="step_text">Receive your invite and join the platform.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section_faq">
+        <div class="padding-global">
+          <div class="container-large">
+            <div class="padding-section-large" style="padding-top:3.5rem">
+              <h2 class="heading-style-h2 faq_heading text-color-plum">Frequently Asked Questions</h2>
+              <div class="faq_grid">
+                <div class="faq-item">
+                  <button class="faq-item_head" type="button"><span class="faq-item_q">What qualifies as femtech?</span><span class="faq-item_icon">+</span></button>
+                  <div class="faq-item_answer"><div class="faq-item_answer-inner"><p>Any product or company that improves the health and wellbeing of women. That includes conditions specific to women, conditions that affect women differently, and conditions that affect women disproportionately.</p></div></div>
+                </div>
+                <div class="faq-item">
+                  <button class="faq-item_head" type="button"><span class="faq-item_q">What makes FemTech Lab different from startup accelerators and communities?</span><span class="faq-item_icon">+</span></button>
+                  <div class="faq-item_answer"><div class="faq-item_answer-inner"><p>FemTech Lab is built by founders, for founders. Once you join the platform, we are invested in your success long term. We help you build and raise capital, and open real doors, to investors and go-to-market partners who can move your company forward. You don't have to build alone. Join us.</p></div></div>
+                </div>
+                <div class="faq-item">
+                  <button class="faq-item_head" type="button"><span class="faq-item_q">What stage of company do you work with?</span><span class="faq-item_icon">+</span></button>
+                  <div class="faq-item_answer"><div class="faq-item_answer-inner"><p>Pre-seed to Series A.</p></div></div>
+                </div>
+                <div class="faq-item">
+                  <button class="faq-item_head" type="button"><span class="faq-item_q">What does it cost?</span><span class="faq-item_icon">+</span></button>
+                  <div class="faq-item_answer"><div class="faq-item_answer-inner"><p>£1,500 per year. Installment payments are available.</p></div></div>
+                </div>
+                <div class="faq-item">
+                  <button class="faq-item_head" type="button"><span class="faq-item_q">Where are you based?</span><span class="faq-item_icon">+</span></button>
+                  <div class="faq-item_answer"><div class="faq-item_answer-inner"><p>FemTech Lab is a global platform open to founders all over the world. In-person events are hosted across 3 locations: London, Amsterdam and New York.</p></div></div>
+                </div>
+                <div class="faq-item">
+                  <button class="faq-item_head" type="button"><span class="faq-item_q">What time zone are the virtual sessions?</span><span class="faq-item_icon">+</span></button>
+                  <div class="faq-item_answer"><div class="faq-item_answer-inner"><p>We try to accommodate as many time zones as possible. Most of the sessions on the platform are between 4pm–6pm BST / 10am–1pm EDT / 8am–10am PDT. Everything is recorded.</p></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section_investors" id="investors">
+        <div class="padding-global">
+          <div class="container-large">
+            <div class="padding-section-medium">
+              <div class="inv_inner">
+                <div class="inv_head">
+                  <p class="inv_eyebrow">Join the FemTech Lab Syndicate</p>
+                  <p class="inv_headline"><span class="text-serif">A community co-investing in the most promising early-stage women's health companies.</span> A collective of entrepreneurs, angel investors, clinicians, scientists, corporate innovators and industry leaders who want to be part of change.</p>
+                </div>
+                <div class="inv_stats">
+                  <div class="inv-stat">
+                    <p class="inv-stat_label">Exit value</p>
+                    <p class="inv-stat_value">$100B+</p>
+                    <p class="inv-stat_source">Source: AOA Dx — Follow The Exits in Women's Health.</p>
+                  </div>
+                  <div class="inv-stat">
+                    <p class="inv-stat_label">Global GDP opportunity</p>
+                    <p class="inv-stat_value">$1T</p>
+                    <p class="inv-stat_source">Source: McKinsey — Closing The Women's Health Gap.</p>
+                  </div>
+                </div>
+                <a href="https://airtable.com/appqVpxq4fWKPrbis/shr0ZMP9lRrGXbmo7" class="button is-peach">Become an Investment Partner</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section_corporate" id="partners">
+        <div class="padding-global" style="width:100%">
+          <div class="container-large">
+            <div class="padding-section-large" style="padding-top:7rem;padding-bottom:17rem;display:flex;flex-direction:column;align-items:center;gap:3rem">
+              <div class="corp_head">
+                <p class="corp_eyebrow">For Corporate Innovators</p>
+                <h2 class="heading-style-h2 corp_heading text-color-plum">Get a front-row seat to innovation in women's health.</h2>
+              </div>
+              <a href="https://airtable.com/appqVpxq4fWKPrbis/shrO3uTqgJZrzuYz6" class="button is-plum">Book a Call with Partnerships Team</a>
+              <div class="corp_card">
+                <p class="corp_quote">"The go-to platform for meeting the most innovative startups in women's health"</p>
+                <div class="corp_author">
+                  <img class="corp_avatar" src="images/Ellipse%205.jpg" alt="Kai Thornagel">
+                  <div class="corp_author-meta">
+                    <p class="corp_name">Kai Thornagel</p>
+                    <p class="corp_role">Director, Essity Ventures</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer" id="events">
+      <div class="padding-global">
+        <div class="container-large">
+          <div class="padding-section-large" style="padding-top:7rem;padding-bottom:3.5rem">
+            <div class="footer_top">
+              <div class="footer_cta">
+                <h2 class="footer_heading">You don't have to build alone — join us.</h2>
+                <a href="#how-to-join" class="button is-coral-deep" style="align-self:flex-start">Apply to join</a>
+              </div>
+              <div class="footer_right">
+                <img class="footer_logo" src="images/white3-R-V%201.png" alt="FemTech Lab">
+                <div class="footer_socials">
+                  <a href="REPLACE_SOCIAL_INSTAGRAM" class="footer_social" aria-label="Instagram" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153a4.908 4.908 0 0 1 1.153 1.772c.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772 4.915 4.915 0 0 1-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153 4.904 4.904 0 0 1-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 0 1 1.153-1.772A4.897 4.897 0 0 1 5.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 1.802c-2.67 0-2.986.01-4.04.059-.976.045-1.505.207-1.858.344-.466.182-.8.398-1.15.748-.35.35-.566.684-.748 1.15-.137.353-.3.882-.344 1.857-.048 1.055-.058 1.37-.058 4.04 0 2.67.01 2.986.058 4.04.045.976.207 1.505.344 1.858.182.466.398.8.748 1.15.35.35.684.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.04.058 2.67 0 2.987-.01 4.04-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.684.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.04 0-2.67-.01-2.986-.058-4.04-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 0 0-.748-1.15 3.098 3.098 0 0 0-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.055-.048-1.37-.059-4.041-.059zm0 3.063a5.135 5.135 0 1 1 0 10.27 5.135 5.135 0 0 1 0-10.27zm0 8.468a3.333 3.333 0 1 0 0-6.666 3.333 3.333 0 0 0 0 6.666zm6.538-8.671a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z"/></svg>
+                  </a>
+                  <a href="REPLACE_SOCIAL_X" class="footer_social" aria-label="X" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg>
+                  </a>
+                  <a href="REPLACE_SOCIAL_LINKEDIN" class="footer_social" aria-label="LinkedIn" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <p class="footer_copyright">© All rights reserved. Balanced Ventures Limited | London, UK.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <aside class="nl-banner" id="nlBanner" aria-label="Newsletter signup" role="complementary">
+    <button class="nl-banner_close" id="nlClose" type="button" aria-label="Close">&times;</button>
+    <p class="nl-banner_emoji" aria-hidden="true">🐆</p>
+    <p class="nl-banner_text">Join 20,000+ women's health innovators, investors and supporters. Be the first to hear about special events, startup news and ecosystem updates.</p>
+    <form class="nl-banner_form" action="MAILCHIMP_ACTION_URL" method="post" target="_blank" novalidate>
+      <input class="nl-banner_input" type="email" name="EMAIL" placeholder="Your email" required>
+      <!-- Mailchimp honeypot: замени name на свой b_xxxxxxxx_yyyyyyyy из эмбед-формы Mailchimp -->
+      <div class="nl-banner_hp" aria-hidden="true"><input type="text" name="b_REPLACE_MAILCHIMP_HONEYPOT" tabindex="-1" value=""></div>
+      <button class="nl-banner_btn" type="submit">Subscribe</button>
+    </form>
+  </aside>
+
+
+  <script>
+/* Alumni — данные карточек. Поля: n=имя основателя, c=компания, co=страна, t=категория(тег), d=короткое описание, p=URL фото.
+   Фото: впиши ссылку в p (пусто → серая плашка-плейсхолдер). Добавить выпускника — допиши объект. */
+window.ALUMNI=[
+  {"n": "Marija Skujina", "c": "Plan Your Baby", "co": "UK", "t": "Digital Health", "d": "End-to-end fertility care delivered entirely online.", "p": "images/Alumni/Marija%20Skujina.jpeg"},
+  {"n": "Lily Elsner & Nick Shipley", "c": "Jack Fertility", "co": "UK", "t": "Digital Health", "d": "Lab-grade sperm analysis bringing men into the fertility conversation.", "p": "images/Alumni/Lily%20Elsner%20%26%20Nick%20Shipley.jpeg"},
+  {"n": "Lucy Lettice Cohen & Claire Lettice", "c": "&Sisters", "co": "UK", "t": "Consumer Goods", "d": "The UK's largest 100% plastic-free period care brand.", "p": "images/Alumni/Lucy%20Lettice%20Cohen%20%26%20Claire%20Lettice.jpeg"},
+  {"n": "Hannah Samano", "c": "Unfabled", "co": "UK", "t": "E-Commerce", "d": "Bestselling women's health essentials, from supplements to sexual wellness, reaching 80M+ women.", "p": "images/Alumni/Hannah%20Samano.png"},
+  {"n": "Kidist Tesfaye", "c": "Yene Health", "co": "Ethiopia", "t": "Digital Health", "d": "Telemedicine and a discreet pharmacy for 280M African women.", "p": "images/Alumni/Kidist%20Tesfaye.jpeg"},
+  {"n": "Mayra Hurtado", "c": "Hormony", "co": "Singapore", "t": "Digital Health", "d": "Retail experience layer for perimenopausal women.", "p": ""},
+  {"n": "Dr. Peter J. Isikwe", "c": "Chiima Therapeutics", "co": "US", "t": "BioTech", "d": "Non-hormonal drug therapy targeting endometriosis at the source.", "p": ""},
+  {"n": "Maggie McDaris", "c": "Your Phase", "co": "UK", "t": "Mobile App", "d": "Productivity system that works with your biology.", "p": ""},
+  {"n": "Lucy Hope", "c": "The Daughters of Mars", "co": "UK", "t": "Consumer Goods", "d": "Patented prebiotic tampon clinically proven to protect the vaginal microbiome.", "p": ""},
+  {"n": "Thaddée Caron", "c": "Athana", "co": "France", "t": "MedTech", "d": "Portable cryotherapy device for drug-free, on-demand hot flash relief.", "p": ""},
+  {"n": "Claire Dixon", "c": "Neuraura", "co": "Canada", "t": "Wearables", "d": "Bioelectronic wearable delivering the first new PCOS treatment in 70 years - no drugs, no hormones.", "p": ""},
+  {"n": "Mo Carrier", "c": "MyBliss", "co": "UK", "t": "Consumer Goods", "d": "Sexual wellness products designed to protect the vaginal microbiome, rated best condom brand by Cosmopolitan.", "p": ""},
+  {"n": "Jenny Wordsworth", "c": "Ovum", "co": "UK", "t": "Nutraceuticals & Supplements", "d": "Fertility supplement formulated with IVF doctors across 550+ clinical studies.", "p": ""},
+  {"n": "Sastya Wardani", "c": "She Plans", "co": "Indonesia", "t": "Digital Health", "d": "AI-powered fertility guidance for Southeast Asian women.", "p": ""},
+  {"n": "Layara Avila", "c": "Ayara", "co": "UK", "t": "Digital Health", "d": "24/7 virtual midwifery clinic.", "p": ""},
+  {"n": "Thato Schermer & Dr. Nonhlanhla Sitole", "c": "Zoie Health", "co": "South Africa", "t": "Digital Health", "d": "South Africa's leading digital clinic for women - virtual consults, pharmacy, and community in one.", "p": ""},
+  {"n": "Tungga Dewi", "c": "Perfect Fit", "co": "Indonesia", "t": "Consumer Goods", "d": "Sustainable menstrual underwear and reusable pads.", "p": ""},
+  {"n": "Nana Adwoa T Amponsah-Mensah", "c": "POKA", "co": "Ghana", "t": "Mobile App", "d": "Reproductive health app built for African women.", "p": ""},
+  {"n": "Shagun Maheshwari", "c": "Papaya", "co": "India", "t": "Consumer Goods", "d": "Patented blood-coagulating pad. 100% plastic-free, biodegrades in 8 months.", "p": ""},
+  {"n": "Louise Stevenson", "c": "Worry Tree", "co": "UK", "t": "Digital Health", "d": "CBT-based anxiety app recommended by the NHS - turning clinical therapy into a daily habit.", "p": ""},
+  {"n": "Sheila Pande", "c": "Tandem", "co": "US", "t": "Digital Health", "d": "AI clinical decision support for OB/GYNs and PCPs to identify and treat perinatal mental health.", "p": ""},
+  {"n": "Ashley Florestal", "c": "Fertilitae", "co": "UK", "t": "Digital Health", "d": "Naturopath-led fertility and personalised wellness plans for women trying to conceive.", "p": ""},
+  {"n": "Alice Wu", "c": "Peace & Pure", "co": "UK", "t": "Consumer Goods", "d": "Skincare rooted in psychodermatology.", "p": ""},
+  {"n": "Dr. Ashley Winter", "c": "MyFemmeTech", "co": "US", "t": "Wearables", "d": "Wearable for at-home monitoring of clitoral arousal and women's sexual health.", "p": ""},
+  {"n": "Anna Zsófia Kormos & Dóra Pelczer", "c": "Alpha FemTech", "co": "Hungary", "t": "Wearables", "d": "Smart bodysuit using heat and micro-vibration to eliminate period pain.", "p": ""},
+  {"n": "Berabose Aline Joyce", "c": "LUNA Africa", "co": "Rwanda", "t": "Digital Health", "d": "Safe community platform connecting African women to verified reproductive health products, services, and experts.", "p": ""},
+  {"n": "Marcel Maroist", "c": "Kat Innovation", "co": "Canada", "t": "Wearables", "d": "Smart garment delivering electrical stimulation to rebuild bone density and prevent osteoporosis fractures.", "p": ""},
+  {"n": "Ilaria Fazio & Letizia Abis", "c": "Ma Joie", "co": "France", "t": "Consumer Goods", "d": "The first modular strap-on designed for queer women.", "p": ""},
+  {"n": "Bonnie EJ Maven", "c": "Vertility Health", "co": "US", "t": "BioTech", "d": "Genetic sperm selection technology that eliminates hereditary disease before conception.", "p": ""},
+  {"n": "Kimba Williams & Dr. Barbara McLaren", "c": "Kushae", "co": "US", "t": "Consumer Goods", "d": "OB/GYN-formulated, plant-based feminine care - one of the first 100 Black women-led brands to raise $1M+.", "p": ""},
+  {"n": "Sarah Dillingham", "c": "Grace & Able", "co": "US", "t": "MedTech", "d": "Clinical-grade, patented joint care built for women with arthritis.", "p": ""},
+  {"n": "Wendy Powell", "c": "MUTU", "co": "UK", "t": "Digital Health", "d": "Clinically proven pelvic floor and core rehab program for women.", "p": ""},
+];
+
+window.TESTIMONIALS=[
+  {"n": "Mayra Hurtado", "r": "Co-Founder, Hormony (Prelude Health)", "q": "A north star for Womens' Health start-ups!", "p": "https://femtechlab.com/wp-content/uploads/2024/01/Myra-Hurtado.jpeg"},
+  {"n": "Jan Rogers", "r": "Founder, Agile Life Sciences", "q": "FemTech Lab supercharged our startup journey with a turbo boost and launched us to the next level. This isn't an accelerator  program; it's a revolution in the making.", "p": "https://femtechlab.com/wp-content/uploads/2024/01/Jan-Rogers.jpeg"},
+  {"n": "Marija Skujina", "r": "Founder, Plan Your Baby", "q": "If you are looking for a strong business partner, FemTech Lab is the place to be. We scaled our growth, secured strategic partnerships, improved gross margin by 80%, launched our business in two different countries, and received our first 100K from an angel investor.", "p": "https://femtechlab.com/wp-content/uploads/2023/03/1-119-scaled-e1680264684515.jpg"},
+  {"n": "Claire Dixon", "r": "Co-Founder & CEO, Neuraura", "q": "Made by the entrepreneurs for the entrepreneurs. We obtained a number of MOUs from referral partners, secured a distribution partner and got introduced to key corporate partners and investors. Join us!", "p": "https://femtechlab.com/wp-content/uploads/2023/03/1-259-scaled-e1680266638987.jpg"},
+  {"n": "Emma Murphy", "r": "Founder, Eating Freely", "q": "FemTech Lab fast-tracked us in ways I didn't expect. Revenue is up 75% YTD and we won our first B2B contract. If you're thinking about applying, stop thinking and do it.", "p": "https://femtechlab.com/wp-content/uploads/2022/10/emma.jpg"},
+  {"n": "Remy Warren", "r": "Founder, MoxyPatch", "q": "I learned that I'm capable of even more than I thought, and getting things accomplished in a short period of time. It's such an exciting global program, especially for FemTech companies in the early stages, and I definitely recommend it to other FemTech founders.", "p": "https://femtechlab.com/wp-content/uploads/2022/12/moxypatch-e1671123468681.jpeg"},
+  {"n": "Alannah Ross", "r": "CEO & Founder, Seek", "q": "I would describe it like doing an MBA in FemTech. I had 12 follow-ups with investors, angel groups and VCs within a couple of weeks.", "p": "https://femtechlab.com/wp-content/uploads/2022/12/1641400245080-e1671125089910.jpg"},
+  {"n": "Kidist Tesfaye", "r": "CEO, Yene Health", "q": "FemTech Lab brings you into this network of investors, advisors and other like-minded individuals that can really help you achieve your goals.", "p": "https://femtechlab.com/wp-content/uploads/2022/12/1-80-scaled-e1671123316492.jpg"},
+  {"n": "Jonathan Gubspun", "r": "CEO, Selectivity", "q": "FemTech Lab provided deep insights about the FemTech market & gave us an opportunity to build our network with like-minded fellow entrepreneurs and investors.", "p": "https://femtechlab.com/wp-content/uploads/2021/08/Jonathan.jpg"},
+  {"n": "Jo Living", "r": "Co-Founder, Aura", "q": "FemTech Lab has been transformative in helping Fertility Circle raise our first investment round. They are super connected and their focused introductions helped us raise nearly double our target amount in minimal time. Investors were primed, easy to schedule with and quick to commit – already understanding the calibre of FemTech Lab startups.", "p": "https://femtechlab.com/wp-content/uploads/2021/08/Jo-Living.jpg"},
+  {"n": "Saba Khalid", "r": "Founder & Chief Editor, Aurat Raaj", "q": "Femtech Lab experience helped me raise funding from angels, VCs & secure IFA Cross Culture Synergy grant. I have also been able to better manage my mental health and connect with my identify as an entrepreneur.", "p": "https://femtechlab.com/wp-content/uploads/2021/08/Saba-Khalid.jpg"},
+  {"n": "Stiliyana Minkovska", "r": "Founder & Healthcare Designer, Matrix", "q": "FemTech Lab has been an absolute game-changer for me, giving me access to so many incredible founders on the same mission to create better services, products, and outcomes for women.", "p": "https://femtechlab.com/wp-content/uploads/2022/12/DSC00476-scaled-e1670593794512.jpg"},
+  {"n": "Laura Vidal Borrell", "r": "Founder, HappySneeze", "q": "The calibre of FemTech Lab is unmatched - with a strong emphasis on empowering founders. They tap into a vast network in the FemTech sector, and have a keen interest in your progress.", "p": "https://femtechlab.com/wp-content/uploads/2023/03/1-245-scaled-e1680266336182.jpg"},
+  {"n": "Chris Ross & Naomi Forward", "r": "Founders, Thyia", "q": "FemTech Lab supported us with vital introductions into NHS Innovation Leads discussing a trial pilot for Thyia with NHS. We also secured a substantial Innovate UK grant which will allow us to take Thyia to the next level!", "p": "https://femtechlab.com/wp-content/uploads/2023/07/1-46-scaled-e1688634873758.jpg"},
+  {"n": "Meg Murray Jones", "r": "Founder, Postpartum Plan", "q": "I'm a solo entrepreneur and I've done a lot of building Postpartum Plan on my own. So to be immersed in a team, a support team full of people to help me and to encourage me along the way has just been completely invaluable. The introductions have been amazing. I've learned a lot in areas that I didn't know I needed to learn in, and I feel like as a business and also as an entrepreneur, I've grown a lot. Thank you so much for everything.", "p": "https://femtechlab.com/wp-content/uploads/2022/12/meg-e1670592955620.jpeg"},
+  {"n": "Polly Thomson", "r": "Founder, Leio Health", "q": "I joined FemTech Lab's Fundraising Sprint with a drafted pitch deck. After 4 weeks I'm now confident in my story, key points of differentiation, how to pitch both myself and the vision. I've got an investor target list in place and a clear plan of action. I'm really happy with the progress I made and feel prepared to start fundraising.", "p": ""},
+];
+
+/* FemTech Lab — слайдеры + FAQ-аккордеон + newsletter-баннер.
+   Один файл = один Webflow-эмбед (последним на странице, перед </body>). */
+(function () {
+
+  /* ---------- Alumni: рендер карточек из window.ALUMNI (alumni-data.js) ---------- */
+  (function renderAlumni() {
+    var host = document.querySelector('[data-alumni]');
+    if (!host || !window.ALUMNI) return;
+    window.ALUMNI.forEach(function (a) {
+      var art = document.createElement('article'); art.className = 'founder-card';
+      // фото фоном: есть p → картинка, нет → серая плашка (без «битой картинки»)
+      var photo = document.createElement('div');
+      photo.className = 'founder-card_img' + (a.p ? '' : ' img-ph');
+      if (a.p) photo.style.backgroundImage = 'url("' + a.p + '")';
+      art.appendChild(photo);
+      var tag = document.createElement('span'); tag.className = 'founder-card_tag'; tag.textContent = a.t; art.appendChild(tag);
+      var meta = document.createElement('div'); meta.className = 'founder-card_meta';
+      var name = document.createElement('h3'); name.className = 'founder-card_name'; name.textContent = a.n; meta.appendChild(name);
+      var comp = document.createElement('p'); comp.className = 'founder-card_company';
+      comp.textContent = a.c + (a.co ? ', ' + a.co : '');
+      meta.appendChild(comp);
+      art.appendChild(meta);
+      var desc = document.createElement('p'); desc.className = 'founder-card_desc'; desc.textContent = a.d; art.appendChild(desc);
+      host.appendChild(art);
+    });
+  })();
+
+  /* ---------- Testimonials: рендер из window.TESTIMONIALS ---------- */
+  (function renderTesti() {
+    var host = document.querySelector('[data-testi]');
+    if (!host || !window.TESTIMONIALS) return;
+    window.TESTIMONIALS.forEach(function (t, i) {
+      var art = document.createElement('article'); art.className = 'testi-card' + (i % 2 ? ' is-plum-glow' : '');
+      var q = document.createElement('p'); q.className = 'testi-card_quote'; q.textContent = '“' + t.q + '”'; art.appendChild(q);
+      var au = document.createElement('div'); au.className = 'testi-card_author';
+      var av = document.createElement('div'); av.className = 'testi-card_avatar'; if (t.p) av.style.backgroundImage = 'url("' + t.p + '")'; au.appendChild(av);
+      var box = document.createElement('div');
+      var nm = document.createElement('p'); nm.className = 'testi-card_name'; nm.textContent = t.n; box.appendChild(nm);
+      var rl = document.createElement('p'); rl.className = 'testi-card_role'; rl.textContent = t.r; box.appendChild(rl);
+      au.appendChild(box); art.appendChild(au); host.appendChild(art);
+    });
+  })();
+
+  /* ---------- Sliders: [data-slider] управляет ближайшим [data-track] ---------- */
+  function initSlider(arrows) {
+    var section = arrows.closest('section') || document;
+    var track = section.querySelector('[data-track]');
+    if (!track) return;
+
+    var prev = arrows.querySelector('[data-dir="prev"]');
+    var next = arrows.querySelector('[data-dir="next"]');
+
+    function step() {
+      var first = track.children[0];
+      if (!first) return track.clientWidth;
+      var styles = getComputedStyle(track);
+      var gap = parseFloat(styles.columnGap || styles.gap || '20') || 20;
+      return first.getBoundingClientRect().width + gap;
+    }
+
+    function update() {
+      var maxScroll = track.scrollWidth - track.clientWidth - 1;
+      if (prev) prev.disabled = track.scrollLeft <= 0;
+      if (next) next.disabled = track.scrollLeft >= maxScroll;
+    }
+
+    if (next) next.addEventListener('click', function () {
+      track.scrollBy({ left: step(), behavior: 'smooth' });
+    });
+    if (prev) prev.addEventListener('click', function () {
+      track.scrollBy({ left: -step(), behavior: 'smooth' });
+    });
+
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  }
+  document.querySelectorAll('[data-slider]').forEach(initSlider);
+
+  /* ---------- FAQ accordion: раскрытие ответа + / − ---------- */
+  document.querySelectorAll('.faq-item').forEach(function (item) {
+    var head = item.querySelector('.faq-item_head') || item;
+    head.addEventListener('click', function () {
+      var open = item.classList.toggle('is-open');
+      var icon = item.querySelector('.faq-item_icon');
+      if (icon) icon.textContent = open ? '−' : '+';
+    });
+  });
+
+  /* ---------- Logo marquee: дублируем группу логотипов для бесшовного цикла ---------- */
+  document.querySelectorAll('.logos-track').forEach(function (track) {
+    var group = track.querySelector('.logos-group');
+    if (group && track.children.length === 1) {
+      var clone = group.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      track.appendChild(clone);
+    }
+  });
+
+  /* ---------- Newsletter banner: показывать при каждой загрузке ---------- */
+  var banner = document.getElementById('nlBanner');
+  if (banner) {
+    var close = document.getElementById('nlClose');
+    // появляется с задержкой (slide-in справа); память НЕ хранится → каждый рефреш
+    setTimeout(function () { banner.classList.add('is-visible'); }, 1200);
+    if (close) close.addEventListener('click', function () {
+      banner.classList.remove('is-visible');
+    });
+  }
+
+})();
+
+  </script>
+</body>
+</html>
