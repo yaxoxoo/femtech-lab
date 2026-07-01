@@ -6,6 +6,21 @@
   <title>FemTech Lab — The global platform for founders in women’s health</title>
   <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="apple-touch-icon" href="images/favicon.png">
+  <meta name="description" content="FemTech Lab — the global platform for founders in women's health & wellness. Connect with investors, corporate partners and fellow founders. Backed by 20,000+ innovators since 2019.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="FemTech Lab (Balanced Ventures Limited)">
+  <link rel="canonical" href="https://yaxoxoo.github.io/femtech-lab/">
+  <meta name="theme-color" content="#2e1a40">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="FemTech Lab">
+  <meta property="og:title" content="FemTech Lab — The global platform for founders in women's health">
+  <meta property="og:description" content="Connect with investors, corporate partners and fellow founders in women's health & wellness. Backed by 20,000+ innovators.">
+  <meta property="og:url" content="https://yaxoxoo.github.io/femtech-lab/">
+  <meta property="og:image" content="https://yaxoxoo.github.io/femtech-lab/images/hero.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FemTech Lab — The global platform for founders in women's health">
+  <meta name="twitter:description" content="Connect with investors, corporate partners and fellow founders in women's health & wellness.">
+  <meta name="twitter:image" content="https://yaxoxoo.github.io/femtech-lab/images/hero.jpg">
   <style>
 /* ==========================================================================
    FemTech Lab — Client First stylesheet
@@ -129,6 +144,8 @@ ul{list-style:none}
 .navbar_register{display:flex;align-items:center;gap:1rem;font-family:var(--font--button);font-weight:500;font-size:1rem;white-space:nowrap;flex:0 0 auto}
 .navbar_main{display:flex;justify-content:center;align-items:center;gap:2rem;padding:1.5rem 1.25rem;background:var(--color--cream);flex-wrap:wrap}
 .navbar_link{font-family:var(--font--display);font-weight:500;font-size:1.5rem;color:var(--color--plum);text-transform:capitalize}
+.navbar_links{display:flex;align-items:center;gap:2rem;flex-wrap:wrap}
+.navbar_burger{display:none;background:none;border:0;cursor:pointer;color:var(--color--plum);font-size:1.75rem;line-height:1}
 
 /* ==========================================================================
    Hero
@@ -357,37 +374,83 @@ ul{list-style:none}
   .benefits_visual{width:42rem}
 }
 @media screen and (max-width:767px){
-  html{font-size:87.5%}             /* 14px */
-  .logos-track{animation-duration:62s}   /* медленнее на мобайле */
-  .padding-section-large{padding-top:5rem;padding-bottom:5rem}
+  html{font-size:87.5%}
+  body{line-height:1.4}
+  .heading-style-h1{font-size:3.25rem}
+  .heading-style-h2{font-size:2.4rem}
+  .heading-style-h3{font-size:2.2rem}
+  .heading-style-h4{font-size:1.9rem}
+  .heading-style-h5{font-size:1.5rem}
+  .heading-style-h6{font-size:1.25rem}
+  .navbar_top-bar p{font-size:.95rem;line-height:1.25}
+  .benefit_title{font-size:1.5rem}
+  .benefit_body{font-size:1.15rem;line-height:1.25}
+  .benefits_overlay-title{font-size:2.4rem}
+  .who-card_title{font-size:1.8rem}
+  .who-card_body{font-size:1.15rem;line-height:1.25}
+  .logos_eyebrow{font-size:1.1rem}
+  .step_num{font-size:3rem;padding:.75rem 1.4rem}
+  .step_text{font-size:1.4rem;line-height:1.2}
+  .faq-item_q{font-size:1.1rem}
+  .faq-item_head{min-height:0}
+  .inv_headline{font-size:1.6rem}
+  .inv-stat_label{font-size:1.4rem}
+  .inv-stat_value{font-size:3rem}
+  .inv_eyebrow,.corp_eyebrow{font-size:1.15rem}
+  .footer_heading{font-size:2.2rem}
+  .testi-card_quote{font-size:1.05rem}
+  /* бургер-меню */
+  .navbar_main{justify-content:flex-end;padding:.85rem 1.25rem;position:relative}
+  .navbar_burger{display:inline-flex;align-items:center;justify-content:center;width:2.5rem;height:2.5rem}
+  .navbar_links{display:none;width:100%;flex-direction:column;align-items:center;gap:.85rem;padding-top:.85rem}
+  .navbar_main.is-open .navbar_links{display:flex}
+  .navbar_link{font-size:1.15rem}
+  /* hero: фото правее — видно женщину+гепарда; текст меньше */
+  .hero_bg{object-position:75% center}
+  /* кнопки не на весь экран */
+  .button{width:auto}
+  .button-group{flex-wrap:wrap;gap:.75rem}
+  /* лэйаут */
+  .logos-track{animation-duration:62s}
+  .padding-section-large{padding-top:4rem;padding-bottom:4rem}
+  .padding-section-medium{padding-top:3.5rem;padding-bottom:3.5rem}
   .section_benefits{flex-direction:column;gap:0;min-height:0;padding-right:0}
-  .benefits_visual{width:100%;min-height:26rem}
-  .benefits_list{padding:4rem 2.5rem;align-items:flex-start}
+  .benefits_visual{width:100%;min-height:22rem}
+  .benefits_list{padding:3rem 1.25rem;align-items:flex-start;gap:2rem}
   .who_grid{grid-template-columns:1fr}
   .faq_grid{grid-template-columns:1fr}
   .inv_stats{flex-direction:column;align-items:stretch}
   .inv-stat{max-width:none}
   .steps{flex-direction:column}
   .section_photo{flex-direction:column}
-  .photo_img{width:100%;height:28rem}
+  .photo_img{width:100%;height:22rem}
   .footer_top{flex-direction:column}
   .footer_right{align-items:flex-start}
-  .section_hero{min-height:38rem}
+  .section_hero{min-height:34rem}
+  .hero_content{padding-top:5rem;padding-bottom:3rem}
+  /* corp-карточка в потоке (не absolute) */
+  .section_corporate .padding-section-large{padding-bottom:3rem!important}
+  .corp_card{position:static;transform:none;border-radius:var(--radius-card);margin-top:2rem}
 }
 @media screen and (max-width:479px){
-  html{font-size:84%}               /* ~13.4px */
+  html{font-size:84%}
   :root{--padding-global:1.25rem}
-  .heading-style-h1{font-size:4.25rem}
-  .navbar_top-bar{flex-direction:column;align-items:flex-start;gap:.75rem}
-  .navbar_main{gap:1.25rem}
-  .stats_grid{flex-direction:column;align-items:stretch}
-  .stat-card{min-height:11rem;width:100%}
-  .button{width:100%;justify-content:center}
-  .button-group{flex-direction:column;align-items:stretch;width:100%}
-  .hero_content{padding-bottom:3.5rem}
-  .who_head,.join_head,.alumni_head,.testi_head{flex-direction:column;align-items:flex-start}
+  .heading-style-h1{font-size:2.6rem}
+  .heading-style-h2{font-size:2rem}
+  .heading-style-h3{font-size:1.9rem}
+  .navbar_top-bar{flex-direction:column;align-items:flex-start;gap:.5rem}
+  .navbar_top-bar p{font-size:.9rem}
+  /* цифры — 2 колонки, 2 ряда */
+  .stats_grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;align-items:stretch}
+  .stat-card,.stat-card.is-h1,.stat-card.is-h2,.stat-card.is-h3,.stat-card.is-h4{min-height:8.5rem;width:auto}
+  .stat-card{padding:1.25rem;gap:1rem}
+  .stat-card_value{font-size:2.5rem}
+  .stat-card_label{font-size:1rem}
+  .hero_content{padding-bottom:2.5rem}
+  .who_head,.join_head,.alumni_head,.testi_head{flex-direction:column;align-items:flex-start;gap:1.25rem}
   .logo-mark{width:7rem;height:3rem;margin-right:2rem}
   .logos-track{animation-duration:70s}
+  .footer_heading{font-size:1.9rem}
   /* баннер — нижний лист во всю ширину */
   .nl-banner{right:.75rem;left:.75rem;bottom:.75rem;width:auto;max-width:none;transform:translateY(140%)}
   .nl-banner.is-visible{transform:translateY(0)}
@@ -405,10 +468,13 @@ ul{list-style:none}
         <a href="https://luma.com/c20g1l0a" class="navbar_register" target="_blank" rel="noopener">Register <span aria-hidden="true">&rarr;</span></a>
       </div>
       <nav class="navbar_main">
-        <a href="#founders" class="navbar_link">Founders</a>
-        <a href="#investors" class="navbar_link">Investors</a>
-        <a href="#partners" class="navbar_link">Partners</a>
-        <a href="https://luma.com/user/femtechlab" class="navbar_link" target="_blank" rel="noopener">Events</a>
+        <button class="navbar_burger" type="button" aria-label="Menu" aria-expanded="false">☰</button>
+        <div class="navbar_links">
+          <a href="#founders" class="navbar_link">Founders</a>
+          <a href="#investors" class="navbar_link">Investors</a>
+          <a href="#partners" class="navbar_link">Partners</a>
+          <a href="https://luma.com/user/femtechlab" class="navbar_link" target="_blank" rel="noopener">Events</a>
+        </div>
       </nav>
     </header>
 
@@ -599,7 +665,7 @@ ul{list-style:none}
         <img class="photo_img" src="images/photo-2.jpg" alt="">
       </section>
 
-      <section class="section_testimonials">
+      <section class="section_testimonials" id="testimonials">
         <div class="padding-global">
           <div class="container-large">
             <div class="padding-section-large">
@@ -971,6 +1037,24 @@ window.TESTIMONIALS=[
     setTimeout(function () { banner.classList.add('is-visible'); }, 1200);
     if (close) close.addEventListener('click', function () {
       banner.classList.remove('is-visible');
+    });
+  }
+
+  /* ---------- Бургер-меню (мобайл) ---------- */
+  var burger = document.querySelector('.navbar_burger');
+  var navMain = document.querySelector('.navbar_main');
+  if (burger && navMain) {
+    burger.addEventListener('click', function () {
+      var open = navMain.classList.toggle('is-open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      burger.textContent = open ? '\u2715' : '\u2630';
+    });
+    navMain.querySelectorAll('.navbar_link').forEach(function (a) {
+      a.addEventListener('click', function () {
+        navMain.classList.remove('is-open');
+        burger.setAttribute('aria-expanded', 'false');
+        burger.textContent = '\u2630';
+      });
     });
   }
 
