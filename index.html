@@ -156,14 +156,14 @@ ul{list-style:none}
 .hero_overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(46,26,64,.5),rgba(46,26,64,0) 55%)}
 .section_hero .padding-global{position:relative;z-index:2;width:100%}
 .hero_content{display:flex;flex-direction:column;gap:1.5rem;max-width:84.375rem;padding-top:7.5rem;padding-bottom:7.5rem}
-.hero_heading{max-width:84.375rem}
+.hero_heading{max-width:55rem}
 
 /* ==========================================================================
    Intro + Stats
    ========================================================================== */
 .section_intro-stats{background:var(--color--white)}
 .intro_inner{display:flex;flex-direction:column;gap:4rem}
-.intro_heading{max-width:98rem}
+.intro_heading{max-width:52rem}
 .stats_grid{display:flex;gap:1.5rem;align-items:flex-end}
 .stat-card{flex:1;min-width:0;padding:2rem;border-radius:var(--radius-card);display:flex;flex-direction:column;justify-content:space-between;gap:2rem}
 .stat-card.is-coral{background:var(--color--coral);color:var(--color--plum)}
@@ -222,7 +222,7 @@ ul{list-style:none}
    ========================================================================== */
 .section_who-its-for{background:var(--color--white)}
 .who_head{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem;margin-bottom:4rem;flex-wrap:wrap}
-.who_heading{max-width:71.5rem}
+.who_heading{max-width:44rem}
 .who_grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
 .who-card{min-height:18rem;padding:2rem;border-radius:var(--radius-card);display:flex;flex-direction:column;justify-content:space-between;gap:2rem}
 .who-card.is-coral{background:var(--color--coral);color:var(--color--plum)}
@@ -235,7 +235,7 @@ ul{list-style:none}
    ========================================================================== */
 .section_alumni{background:var(--color--white)}
 .alumni_head{display:flex;justify-content:space-between;align-items:center;gap:2rem;margin-bottom:3rem;flex-wrap:wrap}
-.alumni_heading{max-width:75.3125rem}
+.alumni_heading{max-width:44rem}
 .founder-card{width:20.625rem;display:flex;flex-direction:column;gap:1rem}
 .founder-card_img{width:100%;height:18.75rem;border-radius:var(--radius-img);background-size:cover;background-position:center;background-repeat:no-repeat}
 .founder-card_tag{align-self:flex-start;padding:.25rem .5rem;border:var(--hairline) solid var(--color--plum);font-family:var(--font--display);font-weight:500;font-size:.75rem;text-transform:uppercase}
@@ -256,7 +256,7 @@ ul{list-style:none}
 .section_testimonials{background:var(--color--white)}
 .section_testimonials .slider_track{align-items:flex-start}
 .testi_head{display:flex;justify-content:space-between;align-items:center;gap:2rem;margin-bottom:3rem;flex-wrap:wrap}
-.testi_heading{max-width:75.3125rem}
+.testi_heading{max-width:44rem}
 .testi-card{width:24.8125rem;height:30rem;padding:3rem 2.5rem;border-radius:var(--radius-card);background:rgba(250,245,239,.55);display:flex;flex-direction:column;justify-content:space-between;gap:1.5rem;position:relative;overflow:hidden}
 .testi-card::after{content:"";position:absolute;width:30rem;height:30rem;left:-12rem;bottom:-18rem;background:radial-gradient(closest-side,rgba(255,111,83,.45),rgba(255,255,255,0));filter:blur(2.5rem);pointer-events:none}
 .testi-card.is-plum-glow::after{background:radial-gradient(closest-side,rgba(58,19,60,.4),rgba(255,255,255,0))}
@@ -301,7 +301,7 @@ ul{list-style:none}
 .inv_inner{display:flex;flex-direction:column;align-items:center;gap:3rem}
 .inv_head{display:flex;flex-direction:column;align-items:center;gap:1.5rem}
 .inv_eyebrow{font-family:var(--font--display);font-weight:500;font-size:1.125rem;line-height:1;text-transform:uppercase;letter-spacing:-.01em}
-.inv_headline{font-size:2rem;line-height:1.05;max-width:88rem}
+.inv_headline{font-size:2rem;line-height:1.05;max-width:52rem}
 .inv_stats{display:flex;gap:1.25rem;width:100%;justify-content:center}
 .inv-stat{flex:1;max-width:47.375rem;padding:2.5rem;border-radius:var(--radius-card);background:rgba(255,255,255,.1);display:flex;flex-direction:column;gap:1rem;text-align:left}
 .inv-stat_label{font-family:var(--font--display);font-weight:500;font-size:1.5rem;line-height:1}
@@ -314,7 +314,7 @@ ul{list-style:none}
 .section_corporate{position:relative;background:var(--color--white);text-align:center;display:flex;flex-direction:column;align-items:center;gap:3rem}
 .corp_head{display:flex;flex-direction:column;align-items:center;gap:1.5rem}
 .corp_eyebrow{font-family:var(--font--display);font-weight:500;font-size:1.125rem;line-height:1;text-transform:uppercase}
-.corp_heading{max-width:70.5rem}
+.corp_heading{max-width:44rem}
 .corp_card{position:absolute;left:50%;bottom:0;transform:translateX(-50%);max-width:37.875rem;width:100%;padding:2rem;border-radius:var(--radius-card) var(--radius-card) 0 0;background:linear-gradient(279deg,#2e1a40,#ff6f53);color:var(--color--white);display:flex;flex-direction:column;align-items:center;gap:1.5rem}
 .corp_quote{font-family:var(--font--display);font-weight:500;font-size:1.25rem;line-height:1.2;text-align:center;max-width:34.5rem}
 .corp_author{display:flex;align-items:center;gap:1.5rem}
@@ -373,9 +373,9 @@ ul{list-style:none}
 @media screen and (max-width:767px){
   html{font-size:87.5%}
   body{line-height:1.4}
-  .heading-style-h1{font-size:2.9rem}
-  .heading-style-h2{font-size:1.75rem}
-  .heading-style-h3{font-size:1.65rem}
+  .heading-style-h1{font-size:3.25rem}
+  .heading-style-h2{font-size:2rem}
+  .heading-style-h3{font-size:1.8rem}
   .who-card_title{font-size:1.35rem}
   .heading-style-h4{font-size:1.9rem}
   .heading-style-h5{font-size:1.5rem}
@@ -410,8 +410,8 @@ ul{list-style:none}
   .button-group{flex-wrap:wrap;gap:.75rem}
   /* лэйаут */
   .logos-track{animation-duration:62s}
-  .padding-section-large{padding-top:4rem;padding-bottom:4rem}
-  .padding-section-medium{padding-top:3.5rem;padding-bottom:3.5rem}
+  .padding-section-large{padding-top:2.75rem;padding-bottom:2.75rem}
+  .padding-section-medium{padding-top:2.25rem;padding-bottom:2.25rem}
   .benefits_row{grid-template-columns:1fr;gap:1.75rem}
   .who_grid{grid-template-columns:1fr}
   .faq_grid{grid-template-columns:1fr}
@@ -425,13 +425,16 @@ ul{list-style:none}
   .section_hero{min-height:75vh}
   .hero_content{padding-top:5rem;padding-bottom:3rem}
   /* corp-карточка в потоке (не absolute) */
-  .section_corporate .padding-section-large{padding-bottom:3rem!important}
+  .section_corporate .padding-section-large{padding-top:3rem!important;padding-bottom:3rem!important}
+  .section_intro-stats .padding-section-large{padding-top:3.5rem!important;padding-bottom:2.75rem!important}
+  .section_how-to-join .padding-section-large{padding-top:2.75rem!important}
+  .section_faq .padding-section-large{padding-top:2.5rem!important}
   .corp_card{position:static;transform:none;border-radius:var(--radius-card);margin-top:2rem}
 }
 @media screen and (max-width:479px){
   html{font-size:84%}
   :root{--padding-global:1.25rem}
-  .heading-style-h1{font-size:2.3rem}
+  .heading-style-h1{font-size:2.7rem}
   .heading-style-h2{font-size:1.75rem}
   .heading-style-h3{font-size:1.65rem}
   .navbar_top-bar{flex-direction:column;align-items:flex-start;gap:.5rem}
