@@ -124,7 +124,7 @@ ul{list-style:none}
    Slider (where the arrows are)
    ========================================================================== */
 .slider_arrows{display:flex;gap:.625rem;flex:0 0 auto}
-.slider_arrow{width:2.75rem;height:2.75rem;border:var(--hairline) solid var(--color--plum);background:var(--color--white);color:var(--color--plum);display:flex;align-items:center;justify-content:center;font-family:var(--font--body);font-size:1rem;transition:background .2s ease,color .2s ease}
+.slider_arrow{width:2.75rem;height:2.75rem;border:var(--hairline) solid var(--color--plum);border-radius:var(--radius-img);background:var(--color--white);color:var(--color--plum);display:flex;align-items:center;justify-content:center;font-family:var(--font--body);font-size:1rem;transition:background .2s ease,color .2s ease}
 .slider_arrow:hover{background:var(--color--plum);color:var(--color--white)}
 .slider_arrow:disabled{opacity:.3;cursor:default}
 .slider_arrow.is-light{border-color:var(--color--white);color:var(--color--white);background:transparent}
@@ -285,7 +285,7 @@ ul{list-style:none}
 .section_faq{background:var(--color--white)}
 .faq_heading{margin-bottom:3rem}
 .faq_grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;align-items:start}
-.faq-item{background:rgba(255,111,83,.1)}
+.faq-item{background:rgba(255,111,83,.1);border-radius:var(--radius-img);overflow:hidden}
 .faq-item_head{width:100%;min-height:7.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.5rem;text-align:left;cursor:pointer;background:none}
 .faq-item_q{font-family:var(--font--display);font-weight:500;font-size:1.25rem;color:#2e1a40}
 .faq-item_icon{font-family:var(--font--display);font-weight:300;font-size:1.875rem;line-height:1;color:#2e1a40;flex:0 0 auto}
