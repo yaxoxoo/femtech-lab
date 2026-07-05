@@ -123,8 +123,9 @@ ul{list-style:none}
 .slider_track{display:flex;gap:1.25rem;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;-ms-overflow-style:none}
 .slider_track::-webkit-scrollbar{display:none}
 .slider_track>*{scroll-snap-align:start;flex:0 0 auto}
-.slider_track[data-loop]{scroll-snap-type:none}
-.slider_track[data-loop]>*{scroll-snap-align:none}
+.slider_track[data-loop]{display:block;overflow:hidden;scroll-snap-type:none}
+.loop-track{display:flex;gap:1.25rem;width:max-content;align-items:flex-start;will-change:transform}
+.loop-track>*{flex:0 0 auto}
 
 /* image placeholder helper (для пустых блоков под фото) */
 .img-ph{background:var(--color--placeholder);border-radius:var(--radius-img)}
@@ -147,7 +148,7 @@ ul{list-style:none}
 /* ==========================================================================
    Hero
    ========================================================================== */
-.section_hero{position:relative;min-height:min(44rem,82vh);display:flex;align-items:flex-end;overflow:hidden;color:var(--color--cream);
+.section_hero{position:relative;min-height:95vh;display:flex;align-items:flex-end;overflow:hidden;color:var(--color--cream);
   background:radial-gradient(120% 120% at 75% 30%,#ff8a5c 0%,#7a2b53 45%,#3a133c 80%)}
 .hero_bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 .hero_overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(46,26,64,.5),rgba(46,26,64,0) 55%)}
@@ -374,7 +375,7 @@ ul{list-style:none}
    ========================================================================== */
 @media screen and (max-width:991px){
   html{font-size:93.75%}            /* 15px */
-  .section_hero{min-height:46rem}
+  .section_hero{min-height:90vh}
 }
 @media screen and (max-width:767px){
   html{font-size:87.5%}
@@ -1000,7 +1001,7 @@ window.TESTIMONIALS=[
       if (next) next.disabled = track.scrollLeft >= maxScroll;
     }
     function nudge(dir) {
-      if (track.__auto) track.__auto.pauseBriefly();   /* стрелка ставит автоскролл на паузу */
+      if (track.__auto && track.__auto.nudge) { track.__auto.nudge(dir); return; }  /* transform-марка */
       track.scrollBy({ left: dir * step(), behavior: 'smooth' });
     }
     if (next) next.addEventListener('click', function () { nudge(1); });
@@ -1012,35 +1013,43 @@ window.TESTIMONIALS=[
     }
     update();
   }
-  /* ---------- Автоскролл-карусели (зацикленно, как марки логотипов) + ручное управление стрелками ---------- */
+  /* ---------- Авто-карусели: transform-марка (как лого), без нативного скролла, старт сразу; стрелки — плавный сдвиг ---------- */
   function initAutoLoop(track) {
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-    var originals = Array.prototype.slice.call(track.children);
-    if (originals.length < 2) return null;
-    originals.forEach(function (node) {           /* дублируем набор карточек → бесшовный цикл */
-      var c = node.cloneNode(true); c.setAttribute('aria-hidden', 'true'); track.appendChild(c);
-    });
-    var speed = 0.4, paused = reduce, resumeT = null;
+    var kids = Array.prototype.slice.call(track.children);
+    if (kids.length < 2) return null;
+    var inner = document.createElement('div'); inner.className = 'loop-track';
+    kids.forEach(function (k) { inner.appendChild(k); });
+    kids.forEach(function (k) { var c = k.cloneNode(true); c.setAttribute('aria-hidden', 'true'); inner.appendChild(c); }); /* дубль → бесшовно */
+    track.appendChild(inner);
+    var offset = 0, speed = 0.4, paused = false, tween = null;
+    function half() { return inner.scrollWidth / 2; }
+    function wrap() { var h = half(); if (h > 0) offset = ((offset % h) + h) % h; }
+    function apply() { inner.style.transform = 'translateX(' + (-offset) + 'px)'; }
     function frame() {
-      if (!paused) {
-        track.scrollLeft += speed;
-        var half = track.scrollWidth / 2;
-        if (track.scrollLeft >= half) track.scrollLeft -= half;       /* дошли до середины — мгновенный сброс (не видно) */
-        else if (track.scrollLeft <= 0) track.scrollLeft += half;     /* ушли влево (стрелка) — оборачиваем */
-      }
+      if (!paused && tween === null) { offset += speed; wrap(); apply(); }  /* авто-движение */
       requestAnimationFrame(frame);
     }
-    function pauseNow() { paused = true; if (resumeT) { clearTimeout(resumeT); resumeT = null; } }
-    function resumeSoon() { if (reduce) return; if (resumeT) clearTimeout(resumeT); resumeT = setTimeout(function () { paused = false; }, 1400); }
-    track.addEventListener('mouseenter', pauseNow);
-    track.addEventListener('mouseleave', function () { if (!reduce) paused = false; });
-    track.addEventListener('pointerdown', pauseNow);
-    track.addEventListener('touchstart', pauseNow, { passive: true });
-    window.addEventListener('pointerup', resumeSoon);
-    window.addEventListener('touchend', resumeSoon);
-    track.addEventListener('wheel', function () { pauseNow(); resumeSoon(); }, { passive: true });
+    track.addEventListener('mouseenter', function () { paused = true; });    /* пауза при наведении (как у лого) */
+    track.addEventListener('mouseleave', function () { paused = false; });
+    function step() {
+      var first = inner.children[0];
+      var s = getComputedStyle(inner); var gap = parseFloat(s.columnGap || s.gap || '20') || 20;
+      return first ? first.getBoundingClientRect().width + gap : 320;
+    }
     if (!reduce) requestAnimationFrame(frame);
-    return { pauseBriefly: function () { pauseNow(); resumeSoon(); } };
+    return {
+      nudge: function (dir) {                                              /* стрелка — плавный сдвиг на карточку */
+        if (reduce) { offset += dir * step(); wrap(); apply(); return; }
+        var start = offset, target = offset + dir * step(), t0 = performance.now(), dur = 500;
+        if (tween) cancelAnimationFrame(tween);
+        (function tw(now) {
+          var p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+          offset = start + (target - start) * e; wrap(); apply();
+          tween = p < 1 ? requestAnimationFrame(tw) : null;
+        })(performance.now());
+      }
+    };
   }
   document.querySelectorAll('[data-loop]').forEach(function (t) { t.__auto = initAutoLoop(t); });
 
@@ -1145,7 +1154,6 @@ window.TESTIMONIALS=[
     document.documentElement.style.scrollBehavior = 'auto';     /* чтобы не конфликтовать с Lenis */
     function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
-    document.querySelectorAll('.slider_track').forEach(function (el) { el.setAttribute('data-lenis-prevent', ''); });
     document.querySelectorAll('a[href^="#"]').forEach(function (a) {
       a.addEventListener('click', function (e) {
         var id = a.getAttribute('href'); if (!id || id.length < 2) return;
