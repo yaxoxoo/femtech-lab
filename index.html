@@ -138,6 +138,9 @@ ul{list-style:none}
 .navbar_link{font-family:var(--font--display);font-weight:500;font-size:var(--fs-lead);color:var(--color--plum);text-transform:capitalize}
 .navbar_links{display:flex;align-items:center;gap:2rem;flex-wrap:wrap}
 .navbar_burger{display:none;background:none;border:0;cursor:pointer;color:var(--color--plum);font-size:var(--fs-title);line-height:1}
+.navbar_logo{position:absolute;left:1.25rem;top:50%;transform:translateY(-50%);display:inline-flex;align-items:center;transition:opacity var(--dur-hover) ease}
+.navbar_logo img{height:2.5rem;width:auto;display:block}
+.navbar_logo:hover{opacity:.8}
 
 /* ==========================================================================
    Hero
@@ -220,7 +223,7 @@ ul{list-style:none}
 .who-card.is-coral{background:var(--color--coral);color:var(--color--plum)}
 .who-card.is-plum{background:var(--color--plum);color:var(--color--white)}
 .who-card_title{font-family:var(--font--display);font-weight:500;font-size:var(--fs-subhead);line-height:1;text-transform:capitalize}
-.who-card_body{font-family:var(--font--display);font-weight:500;font-size:var(--fs-lead);line-height:1.05}
+.who-card_body{font-family:var(--font--display);font-weight:500;font-size:var(--fs-body);line-height:1.25}
 
 /* ==========================================================================
    Alumni (slider) — карточка повторяемая
@@ -457,13 +460,14 @@ ul{list-style:none}
 <body>
   <div class="page-wrapper">
 
-    <header class="navbar">
+    <header class="navbar" id="top">
       <div class="navbar_top-bar">
         <!-- ДИНАМИЧЕСКИЙ АНОНС: меняй текст <p> ниже и ссылку Register (сейчас Luma) -->
         <p>Getting ready to fundraise? Join the upcoming Fundraising Sprint 💥</p>
         <a href="https://luma.com/c20g1l0a" class="navbar_register" target="_blank" rel="noopener">Register <span aria-hidden="true">&rarr;</span></a>
       </div>
       <nav class="navbar_main">
+        <a href="#top" class="navbar_logo" aria-label="FemTech Lab — на главную"><img src="images/logo-nav.png" alt="FemTech Lab" width="48" height="48"></a>
         <button class="navbar_burger" type="button" aria-label="Menu" aria-expanded="false">☰</button>
         <div class="navbar_links">
           <a href="#founders" class="navbar_link">Founders</a>
@@ -1100,7 +1104,7 @@ window.TESTIMONIALS=[
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
     if (reduce || typeof Lenis === 'undefined') return;        /* фолбэк: остаётся scroll-behavior:smooth */
     var lenis;
-    try { lenis = new Lenis({ lerp: 0.1, smoothWheel: true }); } catch (e) { return; }
+    try { lenis = new Lenis({ duration: 1.15, easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); }, smoothWheel: true, wheelMultiplier: 1 }); } catch (e) { return; }
     document.documentElement.style.scrollBehavior = 'auto';     /* чтобы не конфликтовать с Lenis */
     function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
