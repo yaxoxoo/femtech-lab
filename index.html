@@ -144,6 +144,8 @@ ul{list-style:none}
 .navbar_logo{position:absolute;left:1.25rem;top:50%;transform:translateY(-50%);display:inline-flex;align-items:center;transition:opacity var(--dur-hover) ease}
 .navbar_logo img{height:2rem;width:auto;display:block}
 .navbar_logo:hover{opacity:.8}
+.navbar_cta{position:absolute;right:1.25rem;top:50%;transform:translateY(-50%);display:flex;gap:.625rem}
+.navbar_btn{padding:.5rem 1.1rem;font-size:var(--fs-small);border-radius:var(--radius-tag)}
 
 /* ==========================================================================
    Hero
@@ -376,6 +378,7 @@ ul{list-style:none}
 @media screen and (max-width:991px){
   html{font-size:93.75%}            /* 15px */
   .section_hero{min-height:90vh}
+  .navbar_cta{display:none}         /* на планшете/мобилке кнопки только в hero + бургере */
 }
 @media screen and (max-width:767px){
   html{font-size:87.5%}
@@ -477,6 +480,10 @@ ul{list-style:none}
           <a href="#investors" class="navbar_link">Investors</a>
           <a href="#partners" class="navbar_link">Partners</a>
           <a href="https://luma.com/user/femtechlab" class="navbar_link" target="_blank" rel="noopener">Events</a>
+        </div>
+        <div class="navbar_cta">
+          <a href="#how-to-join" class="button is-peach navbar_btn">Apply to join</a>
+          <a href="#investors" class="button is-plum navbar_btn">Invest with us</a>
         </div>
       </nav>
     </header>
