@@ -449,6 +449,8 @@ ul{list-style:none}
   
   /* цифры — 2 колонки, 2 ряда */
   .stats_grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;align-items:stretch}
+  .stats_grid .stat-card:nth-child(3){background:rgba(46,26,64,.5);color:var(--color--white)}   /* шахматка в 2×2 */
+  .stats_grid .stat-card:nth-child(4){background:var(--color--coral);color:var(--color--plum)}
   .stat-card,.stat-card.is-h1,.stat-card.is-h2,.stat-card.is-h3,.stat-card.is-h4{min-height:8.5rem;width:auto}
   .stat-card{padding:1.25rem;gap:1rem}
   
@@ -522,11 +524,11 @@ ul{list-style:none}
                     <p class="stat-card_label">investors</p>
                     <p class="stat-card_value">300+</p>
                   </div>
-                  <div class="stat-card is-plum is-h3">
+                  <div class="stat-card is-coral is-h3">
                     <p class="stat-card_label">industry partners</p>
                     <p class="stat-card_value">100+</p>
                   </div>
-                  <div class="stat-card is-coral is-h4">
+                  <div class="stat-card is-plum is-h4">
                     <p class="stat-card_label">founders supported</p>
                     <p class="stat-card_value">80+</p>
                   </div>
@@ -820,7 +822,7 @@ ul{list-style:none}
       <section class="section_corporate" id="partners">
         <div class="padding-global" style="width:100%">
           <div class="container-large">
-            <div class="padding-section-large" style="padding-top:7rem;padding-bottom:17rem;display:flex;flex-direction:column;align-items:center;gap:3rem">
+            <div class="padding-section-large" style="padding-top:11rem;padding-bottom:15.5rem;display:flex;flex-direction:column;align-items:center;gap:3rem">
               <div class="corp_head">
                 <p class="corp_eyebrow">For Corporate Innovators</p>
                 <h2 class="heading-style-h2 corp_heading text-color-plum">Get a front-row seat to innovation in women's health.</h2>
