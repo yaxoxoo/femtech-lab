@@ -334,6 +334,14 @@ ul{list-style:none}
 .footer_social{width:1.5rem;height:1.5rem;color:var(--color--white);display:inline-flex;opacity:.85;transition:opacity .2s ease}
 .footer_social:hover{opacity:1}
 .footer_social svg{width:100%;height:100%;display:block;fill:currentColor}
+/* Отступы секций (section-scoped, вместо inline — Client First) */
+.section_intro-stats .padding-section-large{padding-top:10rem;padding-bottom:7rem}
+.section_founders-gallery .padding-section-large{padding-top:0}
+.section_how-to-join .padding-section-large{padding-top:5rem}
+.section_faq .padding-section-large{padding-top:3.5rem}
+.section_corporate .padding-global{width:100%}
+.section_corporate .padding-section-large{padding-top:3rem;padding-bottom:15.5rem;display:flex;flex-direction:column;align-items:center;gap:3rem}
+.footer .padding-section-large{padding-top:4rem;padding-bottom:3.5rem}
 /* --- Микро-интеракции: только на кликабельном (кнопки/ссылки/стрелки/FAQ). Появление карточек — без ложных ховеров --- */
 .button{transition:transform var(--dur-hover) var(--ease),box-shadow var(--dur-hover) ease,opacity var(--dur-hover) ease}
 .button:hover{opacity:1;transform:translateY(-2px);box-shadow:0 .625rem 1.25rem rgba(46,26,64,.18)}
@@ -433,10 +441,10 @@ ul{list-style:none}
   .section_hero{min-height:75vh}
   .hero_content{padding-top:5rem;padding-bottom:3rem}
   /* corp-карточка в потоке (не absolute) */
-  .section_corporate .padding-section-large{padding-top:3.5rem!important;padding-bottom:3.5rem!important}
-  .section_intro-stats .padding-section-large{padding-top:3.75rem!important;padding-bottom:3.25rem!important}
-  .section_how-to-join .padding-section-large{padding-top:3.25rem!important}
-  .section_faq .padding-section-large{padding-top:3rem!important}
+  .section_corporate .padding-section-large{padding-top:3.5rem;padding-bottom:3.5rem}
+  .section_intro-stats .padding-section-large{padding-top:3.75rem;padding-bottom:3.25rem}
+  .section_how-to-join .padding-section-large{padding-top:3.25rem}
+  .section_faq .padding-section-large{padding-top:3rem}
   .corp_card{position:static;transform:none;border-radius:var(--radius-card);margin-top:2rem}
 }
 @media screen and (max-width:479px){
@@ -465,6 +473,9 @@ ul{list-style:none}
 }
 
   </style>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Organization","name":"FemTech Lab","url":"https://yaxoxoo.github.io/femtech-lab/","logo":"https://yaxoxoo.github.io/femtech-lab/images/logo-nav.png","description":"The global platform for founders in women's health & wellness — accelerator, investor syndicate and 20K+ community.","sameAs":["https://www.linkedin.com/company/femtechlab"],"parentOrganization":{"@type":"Organization","name":"Balanced Ventures Limited","address":{"@type":"PostalAddress","addressLocality":"London","addressCountry":"UK"}}}
+  </script>
 </head>
 <body>
   <div class="page-wrapper">
@@ -512,7 +523,7 @@ ul{list-style:none}
       <section class="section_intro-stats">
         <div class="padding-global">
           <div class="container-large">
-            <div class="padding-section-large" style="padding-top:10rem;padding-bottom:7rem">
+            <div class="padding-section-large">
               <div class="intro_inner">
                 <h2 class="heading-style-h3 intro_heading text-color-plum-deep">Be part of a global network backing women's health:</h2>
                 <div class="stats_grid">
@@ -542,7 +553,7 @@ ul{list-style:none}
       <section class="section_founders-gallery">
         <div class="padding-global">
           <div class="container-large">
-            <div class="padding-section-large" style="padding-top:0">
+            <div class="padding-section-large">
               <div class="gallery_head">
                 <div class="slider_arrows" data-slider>
                   <button class="slider_arrow" data-dir="prev" aria-label="Previous">&larr;</button>
@@ -669,7 +680,7 @@ ul{list-style:none}
                   <button class="slider_arrow" data-dir="next" aria-label="Next">&rarr;</button>
                 </div>
               </div>
-              <!-- Карточки рендерит app.js из alumni-data.js; фото REPLACE_ALUMNI_N по порядку -->
+              <!-- Карточки рендерит скрипт внизу файла из window.ALUMNI (фото — поле p) -->
               <div class="slider_track" data-track data-loop data-alumni></div>
             </div>
           </div>
@@ -702,7 +713,7 @@ ul{list-style:none}
       <section class="section_how-to-join" id="how-to-join">
         <div class="padding-global">
           <div class="container-large">
-            <div class="padding-section-large" style="padding-top:5rem">
+            <div class="padding-section-large">
               <div class="join_head">
                 <div class="join_heading">
                   <h2 class="heading-style-h2 text-color-plum">How to join:</h2>
@@ -732,7 +743,7 @@ ul{list-style:none}
       <section class="section_faq">
         <div class="padding-global">
           <div class="container-large">
-            <div class="padding-section-large" style="padding-top:3.5rem">
+            <div class="padding-section-large">
               <h2 class="heading-style-h2 faq_heading text-color-plum">Frequently Asked Questions</h2>
               <div class="faq_grid">
                 <div class="faq-item">
@@ -820,9 +831,9 @@ ul{list-style:none}
       </section>
 
       <section class="section_corporate" id="partners">
-        <div class="padding-global" style="width:100%">
+        <div class="padding-global">
           <div class="container-large">
-            <div class="padding-section-large" style="padding-top:3rem;padding-bottom:15.5rem;display:flex;flex-direction:column;align-items:center;gap:3rem">
+            <div class="padding-section-large">
               <div class="corp_head">
                 <p class="corp_eyebrow">For Corporate Innovators</p>
                 <h2 class="heading-style-h2 corp_heading text-color-plum">Get a front-row seat to innovation in women's health.</h2>
@@ -848,7 +859,7 @@ ul{list-style:none}
     <footer class="footer" id="events">
       <div class="padding-global">
         <div class="container-large">
-          <div class="padding-section-large" style="padding-top:4rem;padding-bottom:3.5rem">
+          <div class="padding-section-large">
             <div class="footer_top">
               <img class="footer_logo" src="images/white3-R-V%201.png" alt="FemTech Lab">
               <div class="footer_socials">
