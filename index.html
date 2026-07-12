@@ -372,6 +372,9 @@ ul{list-style:none}
 .nl-banner_emoji{font-size:var(--fs-subhead);line-height:1}
 .nl-banner_text{font-family:var(--font--display);font-weight:500;font-size:var(--fs-body);line-height:1.3}
 .nl-banner_form{display:flex;flex-direction:column;gap:.625rem;margin-top:.25rem}
+.nl-banner_msg{display:none;font-size:var(--fs-small);line-height:1.45;color:var(--color--cream);margin-top:.25rem}
+.nl-banner_msg.is-visible{display:block}
+.nl-banner_msg.is-ok{color:var(--color--peach);font-weight:500}
 .nl-banner_input{width:100%;padding:.75rem 1rem;border:var(--hairline) solid rgba(255,255,255,.4);border-radius:var(--radius-tag);
   background:rgba(255,255,255,.1);color:var(--color--white);font-family:var(--font--display);font-size:var(--fs-base)}
 .nl-banner_input::placeholder{color:rgba(255,255,255,.6)}
@@ -390,6 +393,7 @@ ul{list-style:none}
 }
 @media screen and (max-width:767px){
   html{font-size:87.5%}
+  :root{--padding-global:1.25rem}
   body{line-height:1.4}
   
   
@@ -449,7 +453,7 @@ ul{list-style:none}
 }
 @media screen and (max-width:479px){
   html{font-size:84%}
-  :root{--padding-global:1.25rem}
+  :root{--padding-global:1rem}
   
   
   
@@ -797,7 +801,7 @@ ul{list-style:none}
                     <p class="inv-stat_source">What closing the women's health gap adds to global GDP annually, per <a href="https://www.mckinsey.com/mhi/our-insights/closing-the-womens-health-gap-a-1-trillion-dollar-opportunity-to-improve-lives-and-economies" target="_blank" rel="noopener">McKinsey Health Institute</a>.</p>
                   </div>
                 </div>
-                <a href="https://airtable.com/appqVpxq4fWKPrbis/shr0ZMP9lRrGXbmo7" class="button is-peach" target="_blank" rel="noopener">Become an Investment Partner</a>
+                <a href="https://airtable.com/appqVpxq4fWKPrbis/shr0ZMP9lRrGXbmo7" class="button is-peach" target="_blank" rel="noopener">Learn More</a>
               </div>
             </div>
           </div>
@@ -902,7 +906,7 @@ window.ALUMNI=[
   {"n": "Hannah Samano", "c": "Unfabled", "co": "UK", "t": "E-Commerce", "d": "Bestselling women's health essentials, from supplements to sexual wellness, reaching 80M+ women.", "p": "images/Alumni/Hannah%20Samano.png"},
   {"n": "Kidist Tesfaye", "c": "Yene Health", "co": "Ethiopia", "t": "Digital Health", "d": "Telemedicine and a discreet pharmacy for 280M African women.", "p": "images/Alumni/Kidist%20Tesfaye.jpeg"},
   {"n": "Mayra Hurtado", "c": "Hormony", "co": "Singapore", "t": "Digital Health", "d": "Retail experience layer for perimenopausal women.", "p": "images/Alumni/Mayra%20Hurtado.jpeg"},
-  {"n": "Dr. Peter J. Isikwe", "c": "Chiima Therapeutics", "co": "US", "t": "BioTech", "d": "Non-hormonal drug therapy targeting endometriosis at the source.", "p": ""},
+  {"n": "Dr. Peter J. Isikwe", "c": "Chiima Therapeutics", "co": "US", "t": "BioTech", "d": "Non-hormonal drug therapy targeting endometriosis at the source.", "p": "images/Alumni/Peter.jpg"},
   {"n": "Maggie Harris", "c": "Your Phase", "co": "UK", "t": "Future of Work", "d": "Productivity system that works with your biology.", "p": "images/Alumni/Maggie%20McDaris.jpeg"},
   {"n": "Lucy Hope", "c": "The Daughters of Mars", "co": "UK", "t": "Consumer Goods", "d": "Patented prebiotic tampon clinically proven to protect the vaginal microbiome.", "p": "images/Alumni/Lucy%20Hope.png"},
   {"n": "Thaddée Caron", "c": "Athana", "co": "France", "t": "MedTech", "d": "Portable cryotherapy device for drug-free, on-demand hot flash relief.", "p": "images/Alumni/Thadde%CC%81e%20Caron.jpeg"},
@@ -916,18 +920,18 @@ window.ALUMNI=[
   {"n": "Nana Adwoa T Amponsah-Mensah", "c": "POKA", "co": "Ghana", "t": "Mobile App", "d": "Reproductive health app built for African women.", "p": "images/Alumni/Nana%20Adwoa%20T%20Amponsah-Mensah.jpeg"},
   {"n": "Shagun Maheshwari", "c": "Papaya", "co": "India", "t": "Consumer Goods", "d": "Patented blood-coagulating pad. 100% plastic-free, biodegrades in 8 months.", "p": "images/Alumni/Shagun%20Maheshwari.jpeg"},
   {"n": "Louise Stevenson", "c": "Worry Tree", "co": "UK", "t": "Digital Health", "d": "CBT-based anxiety app recommended by the NHS - turning clinical therapy into a daily habit.", "p": "images/Alumni/Louise%20Stevenson.jpeg"},
-  {"n": "Sheila Pande", "c": "Tandem", "co": "US", "t": "Digital Health", "d": "AI clinical decision support for OB/GYNs and PCPs to identify and treat perinatal mental health.", "p": ""},
-  {"n": "Ashley Florestal", "c": "Fertilitae", "co": "UK", "t": "Digital Health", "d": "Naturopath-led fertility and personalised wellness plans for women trying to conceive.", "p": ""},
+  {"n": "Sheila Pande", "c": "Tandem", "co": "US", "t": "Digital Health", "d": "AI clinical decision support for OB/GYNs and PCPs to identify and treat perinatal mental health.", "p": "images/Alumni/Sheila.jpeg"},
+  {"n": "Ashley Florestal", "c": "Fertilitae", "co": "UK", "t": "Digital Health", "d": "Naturopath-led fertility and personalised wellness plans for women trying to conceive.", "p": "images/Alumni/Ashley%20%28Fertilitae%29.webp"},
   {"n": "Alice Wu", "c": "Peace & Pure", "co": "UK", "t": "Consumer Goods", "d": "Skincare rooted in psychodermatology.", "p": "images/Alumni/Alice%20Wu.jpeg"},
-  {"n": "Dr. Ashley Winter", "c": "MyFemmeTech", "co": "US", "t": "Wearables", "d": "Wearable for at-home monitoring of clitoral arousal and women's sexual health.", "p": ""},
+  {"n": "Dr. Ashley Winter", "c": "MyFemmeTech", "co": "US", "t": "Wearables", "d": "Wearable for at-home monitoring of clitoral arousal and women's sexual health.", "p": "images/Alumni/Ashley%20Winter.jpeg"},
   {"n": "Anna Zsófia Kormos & Dóra Pelczer", "c": "Alpha FemTech", "co": "Hungary", "t": "Wearables", "d": "Smart bodysuit using heat and micro-vibration to eliminate period pain.", "p": "images/Alumni/Anna%20Zs%C3%B3fia%20Kormos%20%26%20D%C3%B3ra%20Pelczer.jpeg"},
   {"n": "Berabose Aline Joyce", "c": "LUNA Africa", "co": "Rwanda", "t": "Digital Health", "d": "Safe community platform connecting African women to verified reproductive health products, services, and experts.", "p": "images/Alumni/Berabose%20Aline%20Joyce.jpeg"},
-  {"n": "Marcel Maroist", "c": "Kat Innovation", "co": "Canada", "t": "Wearables", "d": "Smart garment delivering electrical stimulation to rebuild bone density and prevent osteoporosis fractures.", "p": ""},
+  {"n": "Marcel Maroist", "c": "Kat Innovation", "co": "Canada", "t": "Wearables", "d": "Smart garment delivering electrical stimulation to rebuild bone density and prevent osteoporosis fractures.", "p": "images/Alumni/Marcel.jpeg"},
   {"n": "Ilaria Fazio & Letizia Abis", "c": "Ma Joie", "co": "France", "t": "Consumer Goods", "d": "The first modular strap-on designed for queer women.", "p": "images/Alumni/Ilaria%20Fazio%20%26%20Letizia%20Abis.jpeg"},
   {"n": "Bonnie EJ Maven", "c": "Vertility Health", "co": "US", "t": "BioTech", "d": "Genetic sperm selection technology that eliminates hereditary disease before conception.", "p": "images/Alumni/Bonnie%20EJ%20Maven.jpeg"},
   {"n": "Kimba Williams & Dr. Barbara McLaren", "c": "Kushae", "co": "US", "t": "Consumer Goods", "d": "OB/GYN-formulated, plant-based feminine care - one of the first 100 Black women-led brands to raise $1M+.", "p": "images/Alumni/Kimba%20Williams%20%26%20Dr.%20Barbara%20McLaren.png"},
   {"n": "Sarah Dillingham", "c": "Grace & Able", "co": "US", "t": "MedTech", "d": "Clinical-grade, patented joint care built for women with arthritis.", "p": "images/Alumni/Sarah%20Dillingham.jpeg"},
-  {"n": "Wendy Powell", "c": "MUTU", "co": "UK", "t": "Digital Health", "d": "Clinically proven pelvic floor and core rehab program for women.", "p": ""},
+  {"n": "Wendy Powell", "c": "MUTU", "co": "UK", "t": "Digital Health", "d": "Clinically proven pelvic floor and core rehab program for women.", "p": "images/Alumni/Wendy.jpeg"},
 ];
 
 window.TESTIMONIALS=[
@@ -1100,6 +1104,51 @@ window.TESTIMONIALS=[
     if (close) close.addEventListener('click', function () {
       banner.classList.remove('is-visible');
     });
+
+    /* Подписка БЕЗ редиректа: Mailchimp JSONP (post-json) + инлайн-подтверждение.
+       Если JSONP не отработал (блокировщик/сеть) — обычная отправка формы, заявка не теряется. */
+    var form = banner.querySelector('.nl-banner_form');
+    if (form) {
+      var msg = document.createElement('p');
+      msg.className = 'nl-banner_msg';
+      form.parentNode.appendChild(msg);
+      function showMsg(text, ok) {
+        msg.textContent = text;
+        msg.classList.toggle('is-ok', !!ok);
+        msg.classList.add('is-visible');
+      }
+      var busy = false;
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (busy) return;
+        var hp = form.querySelector('.nl-banner_hp input');
+        if (hp && hp.value) { form.style.display = 'none'; showMsg('Thank you!', true); return; } /* бот */
+        var email = (form.EMAIL.value || '').trim();
+        if (!email || email.indexOf('@') < 1) { showMsg('Please enter a valid email address.', false); return; }
+        busy = true;
+        var cb = 'nlJsonp' + Date.now(), finished = false;
+        var tId = setTimeout(fallback, 8000);
+        window[cb] = function (res) {
+          if (finished) return; finished = true; busy = false; clearTimeout(tId);
+          try { delete window[cb]; } catch (err) { window[cb] = undefined; }
+          if (res && res.result === 'success') {
+            form.style.display = 'none';
+            showMsg('🎉 Almost there — check your inbox to confirm your subscription.', true);
+          } else {
+            var t = res && res.msg ? String(res.msg) : 'Something went wrong. Please try again.';
+            showMsg(t.replace(/^\d+\s*-\s*/, '').replace(/<[^>]*>/g, ''), false);
+          }
+        };
+        function fallback() {
+          if (finished) return; finished = true; busy = false;
+          form.submit();                       /* нативный сабмит не триггерит этот обработчик */
+        }
+        var s = document.createElement('script');
+        s.src = form.action.replace('/post?', '/post-json?') + '&EMAIL=' + encodeURIComponent(email) + '&c=' + cb;
+        s.onerror = fallback;
+        document.head.appendChild(s);
+      });
+    }
   }
 
   /* ---------- Бургер-меню (мобайл) ---------- */
