@@ -1133,7 +1133,7 @@ window.TESTIMONIALS=[
           try { delete window[cb]; } catch (err) { window[cb] = undefined; }
           if (res && res.result === 'success') {
             form.style.display = 'none';
-            showMsg('🎉 Almost there — check your inbox to confirm your subscription.', true);
+            showMsg('✅ You’re in!', true);
           } else {
             var t = res && res.msg ? String(res.msg) : 'Something went wrong. Please try again.';
             showMsg(t.replace(/^\d+\s*-\s*/, '').replace(/<[^>]*>/g, ''), false);
